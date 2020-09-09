@@ -1,8 +1,8 @@
-<script src="node_modules/marked/marked.min.js"></script>
-<div id="content">
+<script src="marked/marked.min.js"></script>
+<div id="content"></div>
+
 <script>
     $.get('papers_reading/markdown_test.md', function(response, status, xhr){
         $("#content").html(marked(response));
     });
 </script>
-</div>
