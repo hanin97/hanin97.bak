@@ -16,14 +16,16 @@
 			<script src="assets/js/main.js"></script>
             <script src="node_modules/marked/marked.min.js"></script>
 
-            <div id="content">
-                <script>
-                    $.get('papers_reading/markdown_test.md', function(response, status, xhr){
-                        $("#content").html(marked(response));
-                    });
-                </script>
-            </div>
+        
 
+			</div>
 
 	</body>
 </html>
+<div id="content">
+<script>
+    $.get('papers_reading/markdown_test.md', function(response, status, xhr){
+        $("#content").html(marked(response));
+    });
+</script>
+</div>
