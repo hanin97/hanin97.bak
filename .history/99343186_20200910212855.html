@@ -1,0 +1,2010 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="http://blog.csdn.net/qq_36792959/article/details/99343186"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="report" content='{&quot;pid&quot;: &quot;blog&quot;, &quot;spm&quot;:&quot;1001.2101&quot;}'>
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <meta name="applicable-device" content="pc">
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>Matlab图像处理--低通滤波器的Matlab实现及透视图_Jineng Han的博客-CSDN博客</title>
+        <meta name="keywords" content="Matlab图像处理--低通滤波器的Matlab实现及透视图">
+        <meta name="csdn-baidu-search"  content='{"autorun":true,"install":true,"keyword":"Matlab图像处理--低通滤波器的Matlab实现及透视图"}'>
+    <meta name="description" content="低通滤波器本文主要介绍三种常见低通滤波器的实现方法及其透视图理想低通滤波器（ILPF）理想低通滤波器有下面的函数确定：H(u,v)={1D(u,v)≤D00公式3条件3 H(u,v)=\begin{cases}1 &amp;amp; D(u,v) \leq D_0 \\0 &amp;amp;  \\公式3 &amp;amp; 条件3 \end{cases}H(u,v)=⎩⎪⎨⎪⎧​...">
+    <script src='//g.csdnimg.cn/tingyun/1.8.3/blog.js' type='text/javascript'></script>
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/css/detail_enter-1aefec7ebe.min.css">
+    <script type="application/ld+json">{"@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld","@id":"http://blog.csdn.net/qq_36792959/article/details/99343186","appid":"1638831770136827","pubDate":"2019-08-15T14:06:57","title":"Matlab图像处理--低通滤波器的Matlab实现及透视图_Jineng Han的博客-CSDN博客","upDate":"2019-08-15T14:06:57"}</script>
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-shirtblue/skin-shirtblue-b2ba816980.min.css">
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var isCorporate = false;//注释删除enterprise
+        var username =  "qq_36792959";
+        var skinImg = "white";
+        var blog_address = "https://blog.csdn.net/qq_36792959";
+        var currentUserName = "qq_36792959";
+        var isOwner = true;
+        var loginUrl = "http://passport.csdn.net/account/login?from=http://blog.csdn.net/qq_36792959/article/details/99343186";
+        var blogUrl = "https://blog.csdn.net/";
+        var avatar = "https://profile.csdnimg.cn/2/D/C/3_qq_36792959";
+        var articleTitle = "Jineng Han的博客";
+        var articleDesc = "低通滤波器本文主要介绍三种常见低通滤波器的实现方法及其透视图理想低通滤波器（ILPF）理想低通滤波器有下面的函数确定：H(u,v)={1D(u,v)≤D00公式3条件3 H(u,v)=\\begin{cases}1 &amp;amp; D(u,v) \\leq D_0 \\\\0 &amp;amp;  \\\\公式3 &amp;amp; 条件3 \\end{cases}H(u,v)=⎩⎪⎨⎪⎧​...";
+        var articleTitles = "Matlab图像处理--低通滤波器的Matlab实现及透视图_Jineng Han的博客-CSDN博客";
+        var nickName = "Jineng Han";
+        var articleDetailUrl = "https://blog.csdn.net/qq_36792959/article/details/99343186";
+        var skinStatus = "White";
+        var blogStaticHost = "https://csdnimg.cn/release/blogv2/"
+    </script>
+    <script src="https://g.csdnimg.cn/??fixed-sidebar/1.1.6/fixed-sidebar.js,report/1.5.0/report.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+    <script src="https://dup.baidustatic.com/js/ds.js"></script>
+</head>
+<body class="nodata " style="">
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js"
+        type="text/javascript"></script>
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+<link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css" />
+<div class="main_father clearfix d-flex justify-content-center" style="height:100%;"> 
+    <div class="container clearfix" id="mainBox">
+<aside class="blog_container_aside">
+    <div id="asideProfile" class="aside-box">
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/qq_36792959" data-report-click='{"mod":"popu_379","dest":"https://blog.csdn.net/qq_36792959","ab":"new"}'>
+                <img src="https://profile.csdnimg.cn/2/D/C/3_qq_36792959" class="avatar_pic" username="qq_36792959">
+            </a>
+        </div>
+        <div class="user-info d-flex flex-column profile-intro-name-box">
+            <div class="profile-intro-name-boxTop">
+                <a href="https://blog.csdn.net/qq_36792959" class="" id="uid" title="Jineng Han" data-report-click='{"mod":"popu_379","dest":"https://blog.csdn.net/qq_36792959","ab":"new"}'>
+                    <span class="name " username="Jineng Han">Jineng Han</span>
+                </a>
+                <span>
+                </span>
+                <span class="flag expert-blog">
+                <span class="bubble">CSDN认证博客专家</span>
+                </span>
+                <span class="flag company-blog">
+                <span class="bubble">CSDN认证企业博客</span>
+                </span>
+            </div>
+            <div class="profile-intro-name-boxFooter">
+                <span class="personal-home-page personal-home-years">码龄4年</span>
+                    <span class="personal-home-page">
+                    <a class="personal-home-certification" href="https://me.csdn.net/qq_36792959?utm_source=14998968" target="_blank" title="暂无认证">
+                    <img src="https://csdnimg.cn/identity/nocErtification.png" alt="">
+                    暂无认证
+                    </a>
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="data-info d-flex item-tiling">
+        <dl class="text-center" title="7">
+            <a href="https://blog.csdn.net/qq_36792959" data-report-click='{"mod":"1598321000_001","spm":"1001.2101.3001.4310"}' data-report-query="t=1">  
+                <dt><span class="count">7</span></dt>
+                <dd class="font">原创</dd>
+            </a>
+        </dl>
+        <dl class="text-center" data-report-click='{"mod":"1598321000_002","spm":"1001.2101.3001.4311"}' title="192848">
+            <a href="https://blog.csdn.net/rank/writing_rank" target="_blank">
+                <dt><span class="count">19万+</span></dt>
+                <dd class="font">周排名</dd>
+            </a>
+        </dl>
+        <dl class="text-center" title="324449">
+            <a href="https://blog.csdn.net/rank/writing_rank_total" data-report-click='{"mod":"1598321000_003","spm":"1001.2101.3001.4312"}' target="_blank">
+                <dt><span class="count">32万+</span></dt>
+                <dd class="font">总排名</dd>
+            </a>
+        </dl>
+        <dl class="text-center" style="min-width:58px" title="15255">  
+            <dt><span class="count">1万+</span></dt>
+            <dd>访问</dd>
+        </dl>
+        <dl class="text-center" title="2级,点击查看等级说明">
+            <dt><a href="https://blog.csdn.net/home/help.html#level" target="_blank">
+            <img class="level" src="https://csdnimg.cn/identity/blog2.png"></a>
+            </dt>
+            <dd>等级</dd>
+        </dl>
+    </div>
+    <div class="item-rank"></div>
+    <div class="data-info d-flex item-tiling">
+        <dl class="text-center" title="208">
+            <dt><span class="count">208</span></dt>
+            <dd>积分</dd>
+        </dl>
+         <dl class="text-center" id="fanBox" title="2">
+            <dt><span class="count" id="fan">2</span></dt>
+            <dd>粉丝</dd>
+        </dl>
+        <dl class="text-center" title="7">
+            <dt><span class="count">7</span></dt>
+            <dd>获赞</dd>
+        </dl>
+        <dl class="text-center" title="6">
+            <dt><span class="count">6</span></dt>
+            <dd>评论</dd>
+        </dl>
+        <dl class="text-center" title="56">
+            <dt><span class="count">56</span></dt>
+            <dd>收藏</dd>
+        </dl>
+    </div>
+    <div class="aside-box-footer" data-report-view="{'spm':'3001.4296'}">
+        <div class="badge-box d-flex">
+            <div class="badge d-flex">
+                <div class="icon-badge" title="勤写标兵Lv1">
+                    <div class="mouse-box">
+                        <img class="medal-img" data-report-click="{'spm':'3001.4296'}" src="https://csdnimg.cn/medal/qixiebiaobing1@240.png" alt="勤写标兵Lv1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="asideSearchArticle" class="aside-box">
+	<div class="aside-content search-comter">
+    <div class="aside-search aside-search-blog">         
+        <input type="text" class="input-serch-blog" name="" autocomplete="off" value="" id="search-blog-words" placeholder="搜博主文章">
+        <a class="btn-search-blog">
+                    <img src="//csdnimg.cn/cdn/content-toolbar/csdn-sou.png?v=1587021042">
+        </a>
+    </div>
+    </div>
+</div>
+
+
+<div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix">
+        <li class="clearfix">
+           <a href="https://blog.csdn.net/qq_36792959/article/details/102934799" target="_blank" data-report-click='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/102934799","ab":"new"}' data-report-view='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/102934799","ab":"new"}'>
+           Linux创建Pycharm快捷方式</a>
+        </li>
+        <li class="clearfix">
+           <a href="https://blog.csdn.net/qq_36792959/article/details/102923586" target="_blank" data-report-click='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/102923586","ab":"new"}' data-report-view='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/102923586","ab":"new"}'>
+           Linux鼠标变成十字无法点击的解决方法</a>
+        </li>
+        <li class="clearfix">
+           <a href="https://blog.csdn.net/qq_36792959/article/details/102832684" target="_blank" data-report-click='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/102832684","ab":"new"}' data-report-view='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/102832684","ab":"new"}'>
+           机器学习算法Matlab实现--PCA、kmeans</a>
+        </li>
+        <li class="clearfix">
+           <a href="https://blog.csdn.net/qq_36792959/article/details/99114254" target="_blank" data-report-click='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/99114254","ab":"new"}' data-report-view='{"mod":"popu_382","dest":"https://blog.csdn.net/qq_36792959/article/details/99114254","ab":"new"}'>
+           Matlab函数--filter2, conv2, imfilter函数的区别</a>
+        </li>
+        </ul>
+    </div>
+</div>    
+<div id="asideCategory" class="aside-box " style="display:block!important;">
+    <h3 class="aside-title">分类专栏</h3>
+    <div class="aside-content">
+        <ul>
+            <li class="">
+                <a class="clearfix" target="_blank" href="https://blog.csdn.net/qq_36792959/category_9487974.html" data-report-click='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9487974.html","ab":"new"}' data-report-view='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9487974.html","ab":"new"}'>
+                    <img src="https://img-blog.csdnimg.cn/20190918140012416.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20190918135101160.png?x-oss-process=image/resize,m_fixed,h_64,w_64'">
+                    <span class="title oneline">
+                        <span class="text">Linux问题记录汇总</span>
+                    </span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="clearfix" target="_blank" href="https://blog.csdn.net/qq_36792959/category_9473152.html" data-report-click='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9473152.html","ab":"new"}' data-report-view='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9473152.html","ab":"new"}'>
+                    <img src="https://img-blog.csdnimg.cn/20190918140053667.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20190918135101160.png?x-oss-process=image/resize,m_fixed,h_64,w_64'">
+                    <span class="title oneline">
+                        <span class="text">机器学习算法</span>
+                    </span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="clearfix" target="_blank" href="https://blog.csdn.net/qq_36792959/category_9213404.html" data-report-click='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9213404.html","ab":"new"}' data-report-view='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9213404.html","ab":"new"}'>
+                    <img src="https://img-blog.csdnimg.cn/20190927151132530.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20190918135101160.png?x-oss-process=image/resize,m_fixed,h_64,w_64'">
+                    <span class="title oneline">
+                        <span class="text">Python图像处理</span>
+                    </span>
+                </a>
+            </li>
+            <li class="">
+                <a class="clearfix" target="_blank" href="https://blog.csdn.net/qq_36792959/category_9213400.html" data-report-click='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9213400.html","ab":"new"}' data-report-view='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9213400.html","ab":"new"}'>
+                    <img src="https://img-blog.csdnimg.cn/20190927151101105.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20190918135101160.png?x-oss-process=image/resize,m_fixed,h_64,w_64'">
+                    <span class="title oneline">
+                        <span class="text">Matlab图像处理</span>
+                    </span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="clearfix" target="_blank" href="https://blog.csdn.net/qq_36792959/category_9213449.html" data-report-click='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9213449.html","ab":"new"}' data-report-view='{"mod":"popu_537","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/qq_36792959/category_9213449.html","ab":"new"}'>
+                    <img src="https://img-blog.csdnimg.cn/20190927151043371.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20190918135101160.png?x-oss-process=image/resize,m_fixed,h_64,w_64'">
+                    <span class="title oneline">
+                        <span class="text">Matlab函数用法</span>
+                    </span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="asideArchive" class="aside-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <div class="archive-box">
+            <div class="archive-title">2019</div> 
+            <div class="archive-content">
+                <div class="archive-item">
+                    <a href="https://blog.csdn.net/qq_36792959/article/month/2019/11" target="_blank" data-report-click='{"mod":"popu_538","ab":"new","dest":"https://blog.csdn.net/qq_36792959/article/month/2019/11"}' data-report-view='{"mod":"popu_538","ab":"new","dest":"https://blog.csdn.net/qq_36792959/article/month/2019/11"}'>
+                    <span class="time">11月</span>
+                    <span class="count">2篇</span>
+                    </a>
+                </div>
+                <div class="archive-item">
+                    <a href="https://blog.csdn.net/qq_36792959/article/month/2019/10" target="_blank" data-report-click='{"mod":"popu_538","ab":"new","dest":"https://blog.csdn.net/qq_36792959/article/month/2019/10"}' data-report-view='{"mod":"popu_538","ab":"new","dest":"https://blog.csdn.net/qq_36792959/article/month/2019/10"}'>
+                    <span class="time">10月</span>
+                    <span class="count">1篇</span>
+                    </a>
+                </div>
+                <div class="archive-item">
+                    <a href="https://blog.csdn.net/qq_36792959/article/month/2019/08" target="_blank" data-report-click='{"mod":"popu_538","ab":"new","dest":"https://blog.csdn.net/qq_36792959/article/month/2019/08"}' data-report-view='{"mod":"popu_538","ab":"new","dest":"https://blog.csdn.net/qq_36792959/article/month/2019/08"}'>
+                    <span class="time">08月</span>
+                    <span class="count">4篇</span>
+                    </a>
+                </div>
+             </div>     
+        </div>
+    </div>
+</div>
+
+<div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list">
+			<li>
+				<a href="https://blog.csdn.net/qq_36792959/article/details/99343186" target="_blank"  data-report-click='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/99343186","ab":"new"}' data-report-view='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/99343186","ab":"new"}'>
+				Matlab图像处理--低通滤波器的Matlab实现及透视图
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">11101</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/qq_36792959/article/details/98977107" target="_blank"  data-report-click='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107","ab":"new"}' data-report-view='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107","ab":"new"}'>
+				Matlab图像处理--细胞目标计数
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">1851</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/qq_36792959/article/details/98979959" target="_blank"  data-report-click='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/98979959","ab":"new"}' data-report-view='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/98979959","ab":"new"}'>
+				Matlab函数--strel函数
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">724</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/qq_36792959/article/details/102923586" target="_blank"  data-report-click='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/102923586","ab":"new"}' data-report-view='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/102923586","ab":"new"}'>
+				Linux鼠标变成十字无法点击的解决方法
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">537</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/qq_36792959/article/details/99114254" target="_blank"  data-report-click='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/99114254","ab":"new"}' data-report-view='{"mod":"popu_541","dest":"https://blog.csdn.net/qq_36792959/article/details/99114254","ab":"new"}'>
+				Matlab函数--filter2, conv2, imfilter函数的区别
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">378</span>
+                </a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="asideNewComments" class="aside-box">
+    <h3 class="aside-title">最新评论</h3>
+    <div class="aside-content">
+        <ul class="newcomment-list">
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_36792959/article/details/98977107#comments_13035521" data-report-click='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_13035521","ab":"new"}' data-report-view='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_13035521","ab":"new"}'>Matlab图像处理--细胞目标计数</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/qq_36792959" class="user-name" target="_blank">Jineng Han: </a>
+                    <span class="code-comments">哦，是的，这个img_max_size改成cell_min_size</span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_36792959/article/details/98977107#comments_13035067" data-report-click='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_13035067","ab":"new"}' data-report-view='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_13035067","ab":"new"}'>Matlab图像处理--细胞目标计数</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/LJLFS" class="user-name" target="_blank">倾薇潇: </a>
+                    <span class="code-comments">楼主，去噪那好像有点问题呀
+未定义函数或变量 &#39;img_max_size&#39;。
+
+出错 Untitledq (line 282)
+img = bwareaopen(img, 0.6 * img_max_size);</span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_36792959/article/details/98977107#comments_12288860" data-report-click='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_12288860","ab":"new"}' data-report-view='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_12288860","ab":"new"}'>Matlab图像处理--细胞目标计数</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/qq_36792959" class="user-name" target="_blank">Jineng Han</a>
+                    <span class="reply"> 回复 </span>
+                    <span class="code-comments">学习使人助眠: 可以具体一些吗？这里用bwareaopen是去除小于某面积的区域</span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_36792959/article/details/98977107#comments_12283010" data-report-click='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_12283010","ab":"new"}' data-report-view='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_12283010","ab":"new"}'>Matlab图像处理--细胞目标计数</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/qq_43352723" class="user-name" target="_blank">学习使人助眠: </a>
+                    <span class="code-comments">楼主 去噪那里是不是有点问题呀</span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_36792959/article/details/98977107#comments_10968701" data-report-click='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_10968701","ab":"new"}' data-report-view='{"mod":"popu_542","dest":"https://blog.csdn.net/qq_36792959/article/details/98977107#comments_10968701","ab":"new"}'>Matlab图像处理--细胞目标计数</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/qq_36792959" class="user-name" target="_blank">Jineng Han: </a>
+                    <span class="code-comments">这里用的是二值化，因为下面有些函数需要在二值化图片上进行</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+	<div id="footerRightAds" class="isShowFooterAds">
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57"><script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<div id="gpt-passback-1">
+  <script>
+    window.googletag = window.googletag || {cmd: []};
+    googletag.cmd.push(function() {
+    googletag.defineSlot('/162717810/CN-csdn.net/300x600-3', [300, 600], 'gpt-passback-1').addService(googletag.pubads());
+    googletag.enableServices();
+    googletag.display('gpt-passback-1');
+    });
+  </script>
+</div><img class="pre-img-lasy" data-src="https://kunyu.csdn.net/1.png?p=57&a=2234&c=0&k=&d=1&t=3&u=6836c0a8d2ad4148ab5f8f200847cb93"></div>
+		</div>
+	</div>
+    <!-- 详情页显示目录 -->
+<!--文章目录-->
+<div id="asidedirectory" class="aside-box">
+    <div class='groupfile' id="directory">
+        <h3 class="aside-title">目录</h3>
+        <div class="align-items-stretch group_item">
+            <div class="pos-box">
+            <div class="scroll-box">
+                <div class="toc-box"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</aside>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).parents("p.text-center").remove();
+	})
+</script>
+<script type="text/javascript"  src="https://g.csdnimg.cn/user-tooltip/2.1/user-tooltip.js"></script>
+<script type="text/javascript"  src="https://g.csdnimg.cn/user-medal/1.0.3/user-medal.js"></script>        <main>
+<div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">Matlab图像处理--低通滤波器的Matlab实现及透视图</h1>
+            </div>
+            <div class="article-info-box">
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                    <a class="follow-nickName" href="https://me.csdn.net/qq_36792959" target="_blank" rel="noopener">Jineng Han</a>
+                    <span class="time">2019-08-15 14:06:57</span>
+                    <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes.png" alt="">
+                    <span class="read-count">11109</span>
+                    <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823":"ab":"new"}'>
+                        <img class="article-collect-img article-heard-img un-collect-status" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect.png" alt="">
+                        <img class="article-collect-img article-heard-img collect-status" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                        <span class="name">收藏</span>
+                        <span class="get-collection">
+                            35
+                        </span>
+                    </a>
+                    </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">分类专栏：</span>
+                                <a data-report-click='{"mod":"popu_626","strategy":"Matlab图像处理","ab":"new"}' class="tag-link" href="https://blog.csdn.net/qq_36792959/category_9213400.html" target="_blank" rel="noopener">Matlab图像处理</a>
+                                <a data-report-click='{"mod":"popu_626","strategy":"Matlab图像处理","ab":"new"}' class="tag-link" href="https://blog.csdn.net/qq_36792959/category_9213400.html" target="_blank" rel="noopener">Matlab图像处理</a>
+                            <span class="label">文章标签：</span>
+                                <a data-report-click='{"mod":"popu_626","strategy":"matlab","ab":"new"}' class="tag-link" href="https://www.csdn.net/gather_22/MtjaAgwsOTU3MTctYmxvZwO0O0OO0O0O.html" target="_blank" rel="noopener">matlab</a>
+                                <a data-report-click='{"mod":"popu_626","strategy":"低通滤波器","ab":"new"}' class="tag-link" href="https://www.csdn.net/gather_2e/MtTaEg1sMjM4NDYtYmxvZwO0O0OO0O0O.html" target="_blank" rel="noopener">低通滤波器</a>
+                                <a data-report-click='{"mod":"popu_626","strategy":"滤波器透视图","ab":"new"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=滤波器透视图&t=blog&o=vip&s=&l=&f=&viparticle=" target="_blank" rel="noopener">滤波器透视图</a>
+                                <a data-report-click='{"mod":"popu_626","strategy":"滤波器实现","ab":"new"}' class="tag-link" href="https://www.csdn.net/gather_22/MtTacgysMzA0MDQtYmxvZwO0O0OO0O0O.html" target="_blank" rel="noopener">滤波器实现</a>
+                    </div>
+                </div>
+                <div class="up-time"><span>最后发布:2019-08-15 14:06:57</span><span>首次发布:2019-08-15 14:06:57</span></div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="http://blog.csdn.net/qq_36792959/article/details/99343186" target="_blank">http://blog.csdn.net/qq_36792959/article/details/99343186</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="operating">
+                        <a class="href-article-edit" href="https://editor.csdn.net/md?articleId=99343186">编辑</a>
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-0dfae4df86.css">
+                <div id="content_views" class="markdown_views prism-atom-one-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                    </svg>
+                    <p></p>
+<div class="toc">
+ <h3>低通滤波器</h3>
+ <ul><li><a href="#ILPF_1">一、理想低通滤波器&#xff08;ILPF&#xff09;</a></li><li><ul><li><a href="#11__3">1.1 理想低通滤波器介绍</a></li><li><a href="#12_Matlab_12">1.2 理想低通滤波器的Matlab实现</a></li><li><a href="#13__61">1.3 理想低通滤波器的实现结果</a></li></ul>
+  </li><li><a href="#BLPF_69">二、布特沃斯低通滤波器&#xff08;BLPF&#xff09;</a></li><li><ul><li><a href="#21__70">2.1 布特沃斯低通滤波器介绍</a></li><li><a href="#22_Matlab_74">2.2 布特沃斯低通滤波器的Matlab实现</a></li><li><a href="#23__119">2.3 布特沃斯低通滤波器的实现结果</a></li></ul>
+  </li><li><a href="#GLPF_128">三、高斯低通滤波器&#xff08;GLPF&#xff09;</a></li><li><ul><li><a href="#31__129">3.1 高斯低通滤波器介绍</a></li><li><a href="#32_Matlab_132">3.2 高斯低通滤波器的Matlab实现</a></li><li><a href="#33__176">3.3 高斯低通滤波器的实现结果</a></li></ul>
+  </li><li><a href="#_185">总结</a></li></ul>
+</div>
+<p></p> 
+<h1><a id="ILPF_1"></a>一、理想低通滤波器&#xff08;ILPF&#xff09;</h1> 
+<p>本文主要介绍三种常见低通滤波器的实现方法及其透视图</p> 
+<h2><a id="11__3"></a>1.1 理想低通滤波器介绍</h2> 
+<p>在以原点为中心、以<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        
+         D
+        
+        
+         0
+        
+       
+      
+      
+       D_0
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span>为半径的圆内&#xff0c;无衰减地通过所有频率&#xff0c;而在该圆外“切断”所有频率的二位低通滤波器&#xff0c;称为理想低通滤波器(ILPF)&#xff1b;理想低通滤波器有下面的函数确定&#xff1a;<br /> <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml">
+     
+      
+       
+        
+         
+          
+           (1.1)
+          
+         
+         
+          
+           
+            H
+           
+           
+            (
+           
+           
+            u
+           
+           
+            ,
+           
+           
+            v
+           
+           
+            )
+           
+           
+            &#61;
+           
+           
+            
+             {
+            
+            
+             
+              
+               
+                
+                 
+                  1
+                 
+                 
+                  &#xff0c;
+                 
+                
+               
+              
+              
+               
+                
+                 
+                  D
+                 
+                 
+                  (
+                 
+                 
+                  u
+                 
+                 
+                  ,
+                 
+                 
+                  v
+                 
+                 
+                  )
+                 
+                 
+                  ≤
+                 
+                 
+                  
+                   D
+                  
+                  
+                   0
+                  
+                 
+                
+               
+              
+             
+             
+              
+               
+                
+                 
+                  0
+                 
+                 
+                  &#xff0c;
+                 
+                
+               
+              
+              
+               
+                
+                 
+                  D
+                 
+                 
+                  (
+                 
+                 
+                  u
+                 
+                 
+                  ,
+                 
+                 
+                  v
+                 
+                 
+                  )
+                 
+                 
+                  &amp;gt;
+                 
+                 
+                  
+                   D
+                  
+                  
+                   0
+                  
+                 
+                
+               
+              
+             
+            
+           
+          
+         
+        
+       
+       
+         H(u,v) &#61; \begin{cases} 1&#xff0c; &amp;amp; D(u,v) \leq D_0 \\ 0&#xff0c; &amp;amp; D(u,v) &amp;gt; D_0 \\ \end{cases} \tag{1.1}
+       
+      
+     </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.08125em;">H</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 3.00003em; vertical-align: -1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top: 0em;"><span class="delimsizing size4">{<!-- --></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.69em;"><span class="" style="top: -3.69em;"><span class="pstrut" style="height: 3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord cjk_fallback">&#xff0c;</span></span></span><span class="" style="top: -2.25em;"><span class="pstrut" style="height: 3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mord cjk_fallback">&#xff0c;</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.19em;"><span class=""></span></span></span></span></span><span class="arraycolsep" style="width: 1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.69em;"><span class="" style="top: -3.69em;"><span class="pstrut" style="height: 3.008em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span><span class="" style="top: -2.25em;"><span class="pstrut" style="height: 3.008em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.19em;"><span class=""></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="tag"><span class="strut" style="height: 3.00003em; vertical-align: -1.25003em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span></span></span><br /> 其中&#xff0c;<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        
+         D
+        
+        
+         0
+        
+       
+      
+      
+       D_0
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span>是一个正常数&#xff0c;<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        D
+       
+       
+        (
+       
+       
+        u
+       
+       
+        ,
+       
+       
+        v
+       
+       
+        )
+       
+       
+        是
+       
+       
+        频
+       
+       
+        率
+       
+       
+        域
+       
+       
+        中
+       
+       
+        的
+       
+       
+        点
+       
+      
+      
+       D(u,v)是频率域中的点
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">频</span><span class="mord cjk_fallback">率</span><span class="mord cjk_fallback">域</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">点</span></span></span></span></span><span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        (
+       
+       
+        u
+       
+       
+        ,
+       
+       
+        v
+       
+       
+        )
+       
+      
+      
+       (u,v)
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span></span></span></span></span>$与矩形中心的距离&#xff0c;即<br /> <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml">
+     
+      
+       
+        
+         
+          
+           (1.2)
+          
+         
+         
+          
+           
+            D
+           
+           
+            (
+           
+           
+            u
+           
+           
+            ,
+           
+           
+            v
+           
+           
+            )
+           
+           
+            &#61;
+           
+           
+            
+             
+              [
+             
+             
+              (
+             
+             
+              u
+             
+             
+              −
+             
+             
+              P
+             
+             
+              /
+             
+             
+              2
+             
+             
+              
+               )
+              
+              
+               2
+              
+             
+             
+              &#43;
+             
+             
+              (
+             
+             
+              v
+             
+             
+              −
+             
+             
+              Q
+             
+             
+              /
+             
+             
+              2
+             
+             
+              
+               )
+              
+              
+               2
+              
+             
+             
+              ]
+             
+            
+            
+             
+              1
+             
+             
+              /
+             
+             
+              2
+             
+            
+           
+          
+         
+        
+       
+       
+        D(u,v) &#61; \sqrt[1/2]{[(u - P / 2)^2 &#43; (v - Q / 2)^2]} \tag{1.2}
+       
+      
+     </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.24em; vertical-align: -0.256125em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.81165em;"><span class="" style="top: -2.93665em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.983875em;"><span class="svg-align" style="top: -3.2em;"><span class="pstrut" style="height: 3.2em;"></span><span class="mord" style="padding-left: 1em;"><span class="mopen">[</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mord">/</span><span class="mord">2</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.740108em;"><span class="" style="top: -2.989em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mopen">(</span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord mathit">Q</span><span class="mord">/</span><span class="mord">2</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.740108em;"><span class="" style="top: -2.989em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span><span class="" style="top: -2.94388em;"><span class="pstrut" style="height: 3.2em;"></span><span class="hide-tail" style="min-width: 1.02em; height: 1.28em;">
+            <svg width="400em" height="1.28em" viewbox="0 0 400000 1296">
+             <path d="M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
+158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
+c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
+175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
+c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
+-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z"></path>
+            </svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.256125em;"><span class=""></span></span></span></span></span></span><span class="tag"><span class="strut" style="height: 1.24em; vertical-align: -0.256125em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">2</span></span><span class="mord">)</span></span></span></span></span></span></span><br /> 其中&#xff0c;<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        P
+       
+      
+      
+       P
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span></span></span></span></span>和<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        Q
+       
+      
+      
+       Q
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.87777em; vertical-align: -0.19444em;"></span><span class="mord mathit">Q</span></span></span></span></span>分别为坐标轴<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        u
+       
+      
+      
+       u
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit">u</span></span></span></span></span>和<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        v
+       
+      
+      
+       v
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span></span></span></span></span>的最大值。</p> 
+<h2><a id="12_Matlab_12"></a>1.2 理想低通滤波器的Matlab实现</h2> 
+<p>该部分代码同时包含了低通和高通滤波器&#xff0c;其中返回值H_L为理想低通滤波器&#xff0c;H_H为理想高通滤波器。</p> 
+<pre><code class="prism language-javascript"><span class="token operator">%</span><span class="token punctuation">{<!-- --></span>
+Code <span class="token keyword">for</span> <span class="token keyword">function</span> <span class="token keyword">of</span> Ideal Filter
+Created on Mon Aug <span class="token number">12</span> <span class="token number">2019</span>
+&#64;author<span class="token punctuation">:</span> hjn
+<span class="token operator">%</span><span class="token punctuation">}</span>
+
+<span class="token operator">%</span> Parameters<span class="token punctuation">:</span>
+<span class="token operator">%</span> <span class="token constant">H_L</span><span class="token punctuation">:</span> Low<span class="token operator">-</span>Pass Filter
+<span class="token operator">%</span> <span class="token constant">H_H</span><span class="token punctuation">:</span> High<span class="token operator">-</span>Pass Filter
+
+<span class="token keyword">function</span> <span class="token punctuation">[</span><span class="token constant">H_L</span><span class="token punctuation">,</span> <span class="token constant">H_H</span><span class="token punctuation">]</span> <span class="token operator">&#61;</span> <span class="token constant">ILP</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">,</span> <span class="token constant">D0</span><span class="token punctuation">)</span>
+
+<span class="token operator">%</span> defining range <span class="token keyword">of</span> axis
+<span class="token constant">U</span><span class="token operator">&#61;</span><span class="token number">0</span><span class="token punctuation">:</span>u_max<span class="token punctuation">;</span>
+<span class="token constant">V</span><span class="token operator">&#61;</span><span class="token number">0</span><span class="token punctuation">:</span>v_max<span class="token punctuation">;</span>
+
+<span class="token operator">%</span> calculating coordinate <span class="token keyword">of</span> center
+center_u <span class="token operator">&#61;</span> <span class="token function">ceil</span><span class="token punctuation">(</span>u_max<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+center_v <span class="token operator">&#61;</span> <span class="token function">ceil</span><span class="token punctuation">(</span>v_max<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">%</span> initilization
+<span class="token constant">H_L</span><span class="token operator">&#61;</span><span class="token function">zeros</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token constant">H_H</span><span class="token operator">&#61;</span><span class="token function">zeros</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> u<span class="token operator">&#61;</span><span class="token number">1</span><span class="token punctuation">:</span>u_max<span class="token operator">&#43;</span><span class="token number">1</span>
+    <span class="token keyword">for</span> v<span class="token operator">&#61;</span><span class="token number">1</span><span class="token punctuation">:</span>v_max<span class="token operator">&#43;</span><span class="token number">1</span>
+        <span class="token operator">%</span> distance <span class="token function">between</span> <span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> and center
+        dist <span class="token operator">&#61;</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token constant">U</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token operator">-</span> center_u<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span> <span class="token operator">&#43;</span> <span class="token punctuation">(</span><span class="token constant">V</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">-</span> center_v<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">%</span> judge thread
+        <span class="token keyword">if</span><span class="token punctuation">(</span>dist<span class="token operator">&lt;&#61;</span><span class="token constant">D0</span><span class="token punctuation">)</span>
+            <span class="token constant">H_L</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> <span class="token operator">&#61;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token constant">H_H</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> <span class="token operator">&#61;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            <span class="token constant">H_L</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> <span class="token operator">&#61;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token constant">H_H</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> <span class="token operator">&#61;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        end
+    end
+end
+
+<span class="token function">figure</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">surf</span><span class="token punctuation">(</span><span class="token constant">U</span><span class="token punctuation">,</span><span class="token constant">V</span><span class="token punctuation">,</span><span class="token constant">H_L</span><span class="token punctuation">)</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">&#39;u&#39;</span><span class="token punctuation">)</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">&#39;v&#39;</span><span class="token punctuation">)</span>
+<span class="token function">zlabel</span><span class="token punctuation">(</span><span class="token string">&#39;H(u,v)&#39;</span><span class="token punctuation">)</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token string">&#39;H(u,v)&#39;</span><span class="token punctuation">)</span>
+</code></pre> 
+<h2><a id="13__61"></a>1.3 理想低通滤波器的实现结果</h2> 
+<p>运行如下代码&#xff1a;</p> 
+<pre><code class="prism language-javascript"><span class="token punctuation">[</span><span class="token constant">H_L_100_100_10</span><span class="token punctuation">,</span> <span class="token constant">H_H_100_100_10</span><span class="token punctuation">]</span> <span class="token operator">&#61;</span> <span class="token constant">ILP</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> 
+<p>结果&#xff1a;<img src="https://img-blog.csdnimg.cn/20190812222814423.png?x-oss-process&#61;image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzkyOTU5,size_16,color_FFFFFF,t_70,#pic_center" alt="在这里插入图片描述" /></p> 
+<center>
+ 图1 理想低通滤波器的透视图
+</center> 
+<h1><a id="BLPF_69"></a>二、布特沃斯低通滤波器&#xff08;BLPF&#xff09;</h1> 
+<h2><a id="21__70"></a>2.1 布特沃斯低通滤波器介绍</h2> 
+<p>截止频率位于距原点<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        
+         D
+        
+        
+         0
+        
+       
+      
+      
+       D_0
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span>处的<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        n
+       
+      
+      
+       n
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit">n</span></span></span></span></span>阶布特沃斯低通滤波器的传递函数定义为<br /> <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml">
+     
+      
+       
+        
+         
+          
+           (2.1)
+          
+         
+         
+          
+           
+            H
+           
+           
+            (
+           
+           
+            u
+           
+           
+            ,
+           
+           
+            v
+           
+           
+            )
+           
+           
+            &#61;
+           
+           
+            
+             1
+            
+            
+             
+              1
+             
+             
+              &#43;
+             
+             
+              [
+             
+             
+              D
+             
+             
+              (
+             
+             
+              u
+             
+             
+              ,
+             
+             
+              v
+             
+             
+              )
+             
+             
+              /
+             
+             
+              
+               D
+              
+              
+               0
+              
+             
+             
+              
+               ]
+              
+              
+               
+                2
+               
+               
+                n
+               
+              
+             
+            
+           
+          
+         
+        
+       
+       
+         H(u,v) &#61; \frac{1} {1 &#43; [D(u,v)/D_0]^{2n}} \tag{2.1}
+       
+      
+     </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.08125em;">H</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 2.25744em; vertical-align: -0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mopen">[</span><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mord">/</span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.740108em;"><span class="" style="top: -2.989em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathit mtight">n</span></span></span></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.936em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="tag"><span class="strut" style="height: 2.25744em; vertical-align: -0.936em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">2</span><span class="mord">.</span><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span></span></span><br /> 其中&#xff0c;<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        D
+       
+       
+        (
+       
+       
+        u
+       
+       
+        ,
+       
+       
+        v
+       
+       
+        )
+       
+      
+      
+       D(u,v)
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span></span></span></span></span>由式&#xff08;1.2&#xff09;给出。</p> 
+<h2><a id="22_Matlab_74"></a>2.2 布特沃斯低通滤波器的Matlab实现</h2> 
+<p>该部分代码同时包含了低通和高通滤波器&#xff0c;其中返回值H_L为布特沃斯低通滤波器&#xff0c;H_H为布特沃斯高通滤波器。</p> 
+<pre><code class="prism language-javascript"><span class="token operator">%</span><span class="token punctuation">{<!-- --></span>
+Code <span class="token keyword">for</span> <span class="token keyword">function</span> <span class="token keyword">of</span> Butterworth Filter
+Created on Mon Aug <span class="token number">12</span> <span class="token number">2019</span>
+&#64;author<span class="token punctuation">:</span> hjn
+<span class="token operator">%</span><span class="token punctuation">}</span>
+
+<span class="token operator">%</span> Parameters<span class="token punctuation">:</span>
+<span class="token operator">%</span> <span class="token constant">H_L</span><span class="token punctuation">:</span> Low<span class="token operator">-</span>Pass Filter
+<span class="token operator">%</span> <span class="token constant">H_H</span><span class="token punctuation">:</span> High<span class="token operator">-</span>Pass Filter
+
+<span class="token keyword">function</span> <span class="token punctuation">[</span><span class="token constant">H_L</span><span class="token punctuation">,</span> <span class="token constant">H_H</span><span class="token punctuation">]</span> <span class="token operator">&#61;</span> <span class="token constant">BLP</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">,</span> <span class="token constant">D0</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+
+<span class="token operator">%</span> define range <span class="token keyword">of</span> axis
+<span class="token constant">U</span><span class="token operator">&#61;</span><span class="token number">0</span><span class="token punctuation">:</span>u_max<span class="token punctuation">;</span>
+<span class="token constant">V</span><span class="token operator">&#61;</span><span class="token number">0</span><span class="token punctuation">:</span>v_max<span class="token punctuation">;</span>
+
+<span class="token operator">%</span> calculate coordinate <span class="token keyword">of</span> center
+center_u <span class="token operator">&#61;</span> <span class="token function">ceil</span><span class="token punctuation">(</span>u_max<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+center_v <span class="token operator">&#61;</span> <span class="token function">ceil</span><span class="token punctuation">(</span>v_max<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">%</span> initilization
+<span class="token constant">H_L</span><span class="token operator">&#61;</span><span class="token function">zeros</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token constant">H_H</span><span class="token operator">&#61;</span><span class="token function">zeros</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> u<span class="token operator">&#61;</span><span class="token number">1</span><span class="token punctuation">:</span>u_max <span class="token operator">&#43;</span> <span class="token number">1</span> 
+    <span class="token keyword">for</span> v<span class="token operator">&#61;</span><span class="token number">1</span><span class="token punctuation">:</span>v_max <span class="token operator">&#43;</span> <span class="token number">1</span>
+        <span class="token operator">%</span> distance <span class="token function">between</span> <span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> and center
+        dist <span class="token operator">&#61;</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token constant">U</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token operator">-</span> center_u<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span> <span class="token operator">&#43;</span> <span class="token punctuation">(</span><span class="token constant">V</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">-</span> center_v<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">H_L</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span><span class="token operator">&#61;</span><span class="token number">1</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&#43;</span> <span class="token function">power</span><span class="token punctuation">(</span>dist<span class="token operator">/</span><span class="token constant">D0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">H_H</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span><span class="token operator">&#61;</span><span class="token number">1</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&#43;</span> <span class="token function">power</span><span class="token punctuation">(</span><span class="token constant">D0</span><span class="token operator">/</span>dist<span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    end
+end
+
+<span class="token function">figure</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">surf</span><span class="token punctuation">(</span><span class="token constant">U</span><span class="token punctuation">,</span><span class="token constant">V</span><span class="token punctuation">,</span><span class="token constant">H_L</span><span class="token punctuation">)</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">&#39;u&#39;</span><span class="token punctuation">)</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">&#39;v&#39;</span><span class="token punctuation">)</span>
+<span class="token function">zlabel</span><span class="token punctuation">(</span><span class="token string">&#39;H(u,v)&#39;</span><span class="token punctuation">)</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token string">&#39;H(u,v)&#39;</span><span class="token punctuation">)</span>
+
+</code></pre> 
+<h2><a id="23__119"></a>2.3 布特沃斯低通滤波器的实现结果</h2> 
+<p>运行如下代码&#xff1a;</p> 
+<pre><code class="prism language-javascript"><span class="token punctuation">[</span><span class="token constant">H_L_100_100_10</span><span class="token punctuation">,</span> <span class="token constant">H_H_100_100_10</span><span class="token punctuation">]</span> <span class="token operator">&#61;</span> <span class="token constant">BLP</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> 
+<p>结果&#xff1a;<br /> <img src="https://img-blog.csdnimg.cn/20190815133407209.png?x-oss-process&#61;image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzkyOTU5,size_16,color_FFFFFF,t_70,#pic_center" alt="在这里插入图片描述" /></p> 
+<center>
+ 图2 布特沃斯低通滤波器的透视图
+</center> 
+<h1><a id="GLPF_128"></a>三、高斯低通滤波器&#xff08;GLPF&#xff09;</h1> 
+<h2><a id="31__129"></a>3.1 高斯低通滤波器介绍</h2> 
+<p>截止频率位于距原点<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        
+         D
+        
+        
+         0
+        
+       
+      
+      
+       D_0
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span>处的高斯低通滤波器的传递函数定义为<br /> <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml">
+     
+      
+       
+        
+         
+          
+           (3.1)
+          
+         
+         
+          
+           
+            H
+           
+           
+            (
+           
+           
+            u
+           
+           
+            ,
+           
+           
+            v
+           
+           
+            )
+           
+           
+            &#61;
+           
+           
+            
+             e
+            
+            
+             
+              −
+             
+             
+              
+               D
+              
+              
+               2
+              
+             
+             
+              (
+             
+             
+              u
+             
+             
+              ,
+             
+             
+              v
+             
+             
+              )
+             
+             
+              /
+             
+             
+              
+               2
+              
+              
+               
+                D
+               
+               
+                0
+               
+               
+                2
+               
+              
+             
+            
+           
+          
+         
+        
+       
+       
+        H(u,v) &#61; e^{-D^2(u,v)/{2D_0^2}} \tag{3.1}
+       
+      
+     </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.08125em;">H</span><span class="mopen">(</span><span class="mord mathit">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.03692em; vertical-align: 0em;"></span><span class="mord"><span class="mord mathit">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 1.03692em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.891314em;"><span class="" style="top: -2.931em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mathit mtight">u</span><span class="mpunct mtight">,</span><span class="mord mathit mtight" style="margin-right: 0.03588em;">v</span><span class="mclose mtight">)</span><span class="mord mtight">/</span><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.891314em;"><span class="" style="top: -2.214em; margin-left: -0.02778em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span><span class="" style="top: -2.931em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="tag"><span class="strut" style="height: 1.28692em; vertical-align: -0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">3</span><span class="mord">.</span><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span></span></span></p> 
+<h2><a id="32_Matlab_132"></a>3.2 高斯低通滤波器的Matlab实现</h2> 
+<pre><code class="prism language-javascript"><span class="token operator">%</span><span class="token punctuation">{<!-- --></span>
+Code <span class="token keyword">for</span> <span class="token keyword">function</span> <span class="token keyword">of</span> Gaussion Filter
+Created on Mon Aug <span class="token number">12</span> <span class="token number">2019</span>
+&#64;author<span class="token punctuation">:</span> hjn
+<span class="token operator">%</span><span class="token punctuation">}</span>
+
+<span class="token operator">%</span> Parameters<span class="token punctuation">:</span>
+<span class="token operator">%</span> <span class="token constant">H_L</span><span class="token punctuation">:</span> Low<span class="token operator">-</span>Pass Filter
+<span class="token operator">%</span> <span class="token constant">H_H</span><span class="token punctuation">:</span> High<span class="token operator">-</span>Pass Filter
+
+<span class="token keyword">function</span> <span class="token punctuation">[</span><span class="token constant">H_L</span><span class="token punctuation">,</span> <span class="token constant">H_H</span><span class="token punctuation">]</span> <span class="token operator">&#61;</span> <span class="token constant">GLP</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">,</span> sigma<span class="token punctuation">)</span>
+
+<span class="token operator">%</span> defining range <span class="token keyword">of</span> axis
+<span class="token constant">U</span><span class="token operator">&#61;</span><span class="token number">0</span><span class="token punctuation">:</span>u_max <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token constant">V</span><span class="token operator">&#61;</span><span class="token number">0</span><span class="token punctuation">:</span>v_max <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token operator">%</span> calculating coordinate <span class="token keyword">of</span> center
+center_u <span class="token operator">&#61;</span> <span class="token function">ceil</span><span class="token punctuation">(</span>u_max<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+center_v <span class="token operator">&#61;</span> <span class="token function">ceil</span><span class="token punctuation">(</span>v_max<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">%</span> initialization
+<span class="token constant">H_L</span><span class="token operator">&#61;</span><span class="token function">zeros</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token constant">H_H</span><span class="token operator">&#61;</span><span class="token function">zeros</span><span class="token punctuation">(</span>u_max<span class="token punctuation">,</span> v_max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> u<span class="token operator">&#61;</span><span class="token number">1</span><span class="token punctuation">:</span>u_max
+    <span class="token keyword">for</span> v<span class="token operator">&#61;</span><span class="token number">1</span><span class="token punctuation">:</span>v_max
+        <span class="token operator">%</span> distence between <span class="token constant">U</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> and center
+        dist <span class="token operator">&#61;</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token constant">U</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token operator">-</span> center_u<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span> <span class="token operator">&#43;</span> <span class="token punctuation">(</span><span class="token constant">V</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">-</span> center_v<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">H_L</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> <span class="token operator">&#61;</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token operator">-</span>dist<span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>sigma<span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">H_H</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span> <span class="token operator">&#61;</span> <span class="token number">1</span> <span class="token operator">-</span> <span class="token constant">H_L</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    end
+end
+
+<span class="token function">figure</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">surf</span><span class="token punctuation">(</span><span class="token constant">U</span><span class="token punctuation">,</span><span class="token constant">V</span><span class="token punctuation">,</span><span class="token constant">H_L</span><span class="token punctuation">)</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">&#39;u&#39;</span><span class="token punctuation">)</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">&#39;v&#39;</span><span class="token punctuation">)</span>
+<span class="token function">zlabel</span><span class="token punctuation">(</span><span class="token string">&#39;H(u,v)&#39;</span><span class="token punctuation">)</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token string">&#39;H(u,v)&#39;</span><span class="token punctuation">)</span>
+</code></pre> 
+<h2><a id="33__176"></a>3.3 高斯低通滤波器的实现结果</h2> 
+<p>运行如下代码&#xff1a;</p> 
+<pre><code class="prism language-javascript"><span class="token punctuation">[</span><span class="token constant">H_L_100_100_10</span><span class="token punctuation">,</span> <span class="token constant">H_H_100_100_10</span><span class="token punctuation">]</span> <span class="token operator">&#61;</span> <span class="token constant">GLP</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> 
+<p>结果&#xff1a;<br /> <img src="https://img-blog.csdnimg.cn/20190815135323378.png?x-oss-process&#61;image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzkyOTU5,size_16,color_FFFFFF,t_70,#pic_center" alt="在这里插入图片描述" /></p> 
+<center>
+ 图3 高斯低通滤波器的透视图
+</center> 
+<h1><a id="_185"></a>总结</h1> 
+<p>低通滤波器可用来平滑图像&#xff0c;其中<span class="katex--inline"><span class="katex"><span class="katex-mathml">
+    
+     
+      
+       
+        
+         D
+        
+        
+         0
+        
+       
+      
+      
+       D_0
+      
+     
+    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.301108em;"><span class="" style="top: -2.55em; margin-left: -0.02778em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span>越大&#xff0c;即截止频率越大&#xff0c;图中的类似柱状物越粗&#xff0c;即通过的频率分量越多。</p>
+                </div>
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-10218d227c.css" rel="stylesheet">
+                <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-57471a2b6e.css" rel="stylesheet">
+        </div>
+    </article>
+</div>
+<script>
+    // 敏感词替换
+    ~function(blogSensitiveWords){
+        if(blogSensitiveWords){   
+            var getContentViews = document.getElementById("content_views");
+            var getContentTitle = document.getElementById("articleContentId");
+            var contentViewsInnerHTML = getContentViews.innerHTML;
+            var contentTitleInnerHTML = getContentTitle.innerHTML;
+            var keyWordsJsonArr = [];
+            var keyWordsArr = blogSensitiveWords.split(',');
+            function repeatTimes(str, num){
+                return num > 1 ? str += repeatTimes(str, --num): str;
+            }
+            for(var i = 0; i < keyWordsArr.length; i++){
+                var keyWordsJson = {} ;
+                keyWordsJson.key = keyWordsArr[i];
+                keyWordsJson.value = repeatTimes("*",keyWordsArr[i].length);
+                keyWordsJsonArr.push(keyWordsJson);
+            }
+            var reg;
+            for(var i = 0; i < keyWordsJsonArr.length; i++){
+                var item = keyWordsJsonArr[i];
+                reg = new RegExp(item.key+"(?!([^<]*>)|([^<]*<\/a>))","ig");
+                contentViewsInnerHTML = contentViewsInnerHTML.replace(reg,item.value);
+                contentTitleInnerHTML = contentTitleInnerHTML.replace(reg,item.value);
+            }
+            getContentViews.innerHTML=contentViewsInnerHTML;
+            getContentTitle.innerHTML=contentTitleInnerHTML;
+        }
+    }(blogSensitiveWords)
+</script>
+<script>
+    $.get("https://blog.csdn.net/qq_36792959/article/uvc/99343186");
+</script>
+<div class="more-toolbox" id="toolBarBox">
+    <span id="fixedBar"></span>
+    <div class="left-toolbox">
+        <ul class="toolbox-list">
+            <li class="tool-item tool-active is-like" id="is-like"><a>
+            <img style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+            <img style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUp.png" alt="">   
+            <span class="name" id="is-like-span">点赞</span>
+            <span id="spanCount" class="count">
+                    5
+            </span>
+            </a></li>
+            <li class="tool-item tool-active tool-item-comment">
+                <a href="#commentBox">
+                    <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarComment.png" alt="">
+                    <span class="name">评论</span>
+                    <span class="count">
+                    </span>
+                </a>
+            </li>
+            <li class="tool-item tool-active tool-QRcode" id="tool-share">
+                <a href="javascript:;" data-report-click='{"mod":"1582594662_002","spm":"1001.2101. 3001.4129","ab":"new"}'>
+                    <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarShare.png" alt="">
+                    <span class="name">分享</span>
+                </a>
+                <div class="QRcode" id="tool-QRcode" style="left:-92%;">
+                    <span id="QRcode-close">x</span>
+                    <p class="title">
+                    海报分享
+                    </p>
+                    <div id='shareCode'></div>
+                    <p>
+                    扫一扫，分享海报
+                    </p>
+                </div>
+            </li>
+            <li class="tool-item tool-active is-collection ">
+                <a href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101. 3001.4130","ab":"new"}'>
+                    <img id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect.png" alt="">
+                    <img id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                    <span class="name" id="is-collection">收藏</span>
+                    <span class="count get-collection">
+                        35
+                    </span>
+                </a>
+            </li>
+            <li class="tool-item tool-active tool-phong" id="tool-phong">
+                <a href="javascript:;" data-report-click='{"mod":"popu_831","spm":"1001.2101. 3001.4131","dest":"","ab":"new"}'>
+                    <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarMobile.png" alt="">
+                    <span class="name">
+                        手机看
+                    </span>
+                </a>
+                <div class="QRcode" id="tool-QRcode-phong" style="left:-78%;">
+                    <p class="title">
+                    分享到微信朋友圈
+                    </p>
+                    <span id="QRcode-phong-close">x</span>
+                    <div id='shareQrCode'></div>
+                    <p>
+                    扫一扫，手机阅读 
+                    </p>
+                </div>
+            </li>
+            <li class="tool-item tool-active tool-reward">
+                <a  id="toolreward" data-report-click='{"mod":"popu_830","spm":"1001.2101. 3001.4237","dest":"","ab":"new"}'>
+                    <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarReward.png" alt="">
+                    <span class="name">打赏</span>
+                </a>
+<div id="reward" class="reward-box">
+	<p class="rewad-title">打赏<span class="reward-close"><svg t="1567152543821" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10924" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12"><defs><style type="text/css"></style></defs><path d="M512 438.378667L806.506667 143.893333a52.032 52.032 0 1 1 73.6 73.621334L585.621333 512l294.485334 294.485333a52.074667 52.074667 0 0 1-73.6 73.642667L512 585.621333 217.514667 880.128a52.053333 52.053333 0 1 1-73.621334-73.642667L438.378667 512 143.893333 217.514667a52.053333 52.053333 0 1 1 73.621334-73.621334L512 438.378667z" fill="" p-id="10925"></path></svg></span></p>
+	<dl>
+		<dd>
+		<a href="https://blog.csdn.net/qq_36792959" data-report-click='{"mod":"popu_379","dest":"https://blog.csdn.net/qq_36792959","ab":"new"}'>
+			<img src="https://profile.csdnimg.cn/2/D/C/3_qq_36792959" class="avatar_pic" username="qq_36792959">
+		</a>
+		</dd>
+		<dt>
+			<p class="blog-name">Jineng Han</p>
+			<p class="blog-discript">你的鼓励将是我创作的最大动力</p>
+		</dt>
+	</dl>
+	<div class="change-bt-box">
+		<span class="reward-bt reward-bt-coin">C币</span>
+		<span class="reward-bt-space"></span>
+		<span class="reward-bt reward-bt-money reward-bt-active">余额</span>
+	</div>
+	<div class="money-box">
+			<span class="choose_money choosed" data-id="2">2C币</span>
+			<span class="choose_money " data-id="4">4C币</span>
+			<span class="choose_money " data-id="6">6C币</span>
+			<span class="choose_money " data-id="10">10C币</span>
+			<span class="choose_money " data-id="20">20C币</span>
+			<span class="choose_money " data-id="50">50C币</span>
+	</div>
+	<div class="sure-box">
+		<p class="is-have-money"><a class="reward-sure">确定</a></p>
+	</div>
+</div>
+            </li>
+            <li class="tool-item tool-active tool-more">
+                <a>
+                <img class="tool-more-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/lookMore.png" alt="">
+                </a>
+                <ul class="more-box">
+                    <li class="item item-report"><a class="article-report">文章举报</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div style="display:flex">
+         </div>
+    </div>  
+</div>
+<script type=text/javascript crossorigin src="https://csdnimg.cn/release/phoenix/production/qrcode-7c90a92189.min.js"></script>
+<script src="//g.csdnimg.cn/??sharewx/1.2.1/sharewx.js" type="text/javascript"></script>
+<script type="text/javascript" crossorigin src="https://g.csdnimg.cn/collection-box/1.1.9/collection-box.js"></script>
+<a id="commentBox" name="commentBox"></a>
+<div class="comment-box">
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="https://me.csdn.net/qq_36792959" target="_blank">
+				<img class="" src="https://profile.csdnimg.cn/2/D/C/3_qq_36792959">
+			</a>
+		</div>
+		<form id="commentform">
+			<img class="comment-sofa-flag" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentFlag@2x.png">
+			<textarea class="comment-content" name="comment_content" id="comment_content" placeholder="优质评论可以帮助作者获得更高权重"
+				maxlength="1000"></textarea>
+			<div class="opt-box">
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="99343186">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">
+						<div class="txt-selected text-truncate">添加代码片</div>
+						<svg class="icon d-block" width="200px" height="100.00px" viewBox="0 0 2048 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path  d="M597.33333292 298.666667h853.333334L1023.99999992 725.333333 597.33333292 298.666667z"  /></svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>
+				<div class="right-box" id="rightBox" data-type="2">
+							<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+							<a data-report-click='' class="btn btn-sm btn-quick-comment" id="quickComment">“速评一下”</a>
+							<a data-report-click='{"mod":"1582594662_003","ab":"new"}'><input type="submit"
+									class="btn btn-sm btn-comment" value="发表评论"></a>
+				</div>
+			</div>
+		</form>
+		<input type="button" class="bt-comment-show" value="评论">
+	</div>
+	<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div>
+		</div>
+	</div>
+</div>            <div class="recommend-box insert-baidu-box">
+            </div>
+            <div class="template-box">
+                <span>©️2020 CSDN</span>
+                <span>皮肤主题: 像素格子</span>
+                <span> 设计师:CSDN官方博客</span>
+                <span>
+                    <a href="https://blog.csdn.net/" class="back-home c-blue c-blue-hover c-blue-focus">返回首页</a>
+                </span>
+            </div>
+            <script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.4.js" data-isfootertrack="false" type="text/javascript"></script>
+        </main>
+    </div>
+        <div class="recommend-right  align-items-stretch clearfix" id="rightAside" data-type="recommend">
+            <aside class="recommend-right_aside">
+                <div id="recommend-right" style="height:100%;position:fixed;">
+                    <div class='d-flex flex-column aside-box groupfile' id="groupfile">
+                        <h3 class="aside-title">目录</h3>
+                        <div class="align-items-stretch group_item">
+                            <div class="pos-box">
+                                <div class="scroll-box">
+                                    <div class="toc-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div id="recommendAdBox">
+                            <div id="kp_box_479" data-pid="479"><script src='https://securepubads.g.doubleclick.net/tag/js/gpt.js'>
+  googletag.pubads().definePassback('/162717810/CA-MarketingChoiceMedia/300x600', [300, 600]).display();
+</script><img class="pre-img-lasy" data-src="https://kunyu.csdn.net/1.png?p=479&a=2314&c=0&k=&d=1&t=3&u=66c52f0247924623825b328772cefbed"></div>
+                        </div>
+                    <div class="recommend-list-box d-flex flex-column aside-box">
+                    <ul class="recommend-fixed-box align-items-stretch">
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/kevin_zhao_zl/article/details/84349602" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param_right\"}","index":"1","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/kevin_zhao_zl/article/details/84349602"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param_right\"}","index":"1","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/kevin_zhao_zl/article/details/84349602"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>图像语义分割(3)-<em>Dilated</em> Conv:使用空洞卷积进行多尺度语义聚合</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/Quincuntial/article/details/78743033" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param_right\"}","index":"2","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/Quincuntial/article/details/78743033"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param_right\"}","index":"2","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/Quincuntial/article/details/78743033"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>Dilated</em> <em>Convolutions</em>&mdash;&mdash;扩张卷积</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/FX677588/article/details/71308096" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param_right\"}","index":"3","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/FX677588/article/details/71308096"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param_right\"}","index":"3","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/FX677588/article/details/71308096"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>论文</em><em>笔记</em>&mdash;&mdash;CVPR 2017 <em>Dilated</em> Residual Networks</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/zjucor/article/details/78213113" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param_right\"}","index":"4","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/zjucor/article/details/78213113"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param_right\"}","index":"4","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/zjucor/article/details/78213113"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>dilated</em> convolution</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/weixin_30498807/article/details/95615248" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param_right\"}","index":"5","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/weixin_30498807/article/details/95615248"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param_right\"}","index":"5","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/weixin_30498807/article/details/95615248"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>Dilated</em> <em>Convolutions</em> 空洞卷积</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/program_developer/article/details/81023592" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-6.channel_param_right\"}","index":"6","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/program_developer/article/details/81023592"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-6.channel_param_right\"}","index":"6","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/program_developer/article/details/81023592"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-6.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-6.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>对<em>Dilated</em> Convolution理解</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/weixin_37993251/article/details/89333099" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-7.channel_param_right\"}","index":"7","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/weixin_37993251/article/details/89333099"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-7.channel_param_right\"}","index":"7","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/weixin_37993251/article/details/89333099"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-7.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-7.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>Octave Convolution[<em>论文</em>详解]</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/shuzfan/article/details/69948944" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-8.channel_param_right\"}","index":"8","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/shuzfan/article/details/69948944"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-8.channel_param_right\"}","index":"8","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/shuzfan/article/details/69948944"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-8.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-8.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>Dilated</em> Convolution</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/zizi7/article/details/77369945" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-9.channel_param_right\"}","index":"9","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/zizi7/article/details/77369945"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-9.channel_param_right\"}","index":"9","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/zizi7/article/details/77369945"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-9.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-9.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>图像语义分割（3）- <em>Dilated</em> <em>Convolutions</em></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/qq_21167623/article/details/80923537" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-10.channel_param_right\"}","index":"10","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/qq_21167623/article/details/80923537"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-10.channel_param_right\"}","index":"10","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/qq_21167623/article/details/80923537"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-10.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-10.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>【译】Multi-Scale Context Aggregation by Dilation <em>Convolutions</em>(空洞卷积)</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/qq_40520596/article/details/104498153" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-11.channel_param_right\"}","index":"11","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/qq_40520596/article/details/104498153"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-11.channel_param_right\"}","index":"11","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/qq_40520596/article/details/104498153"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-11.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-11.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>目标分割(三)<em>Dilated</em> <em>Convolutions</em>讲解</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/oJiMoDeYe12345/article/details/77947565" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-12.channel_param_right\"}","index":"12","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/oJiMoDeYe12345/article/details/77947565"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-12.channel_param_right\"}","index":"12","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/oJiMoDeYe12345/article/details/77947565"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-12.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-12.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>论文</em><em>阅读</em>理解 - <em>Dilated</em> Convolution</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/suixinsuiyuan33/article/details/79451069" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-13.channel_param_right\"}","index":"13","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/suixinsuiyuan33/article/details/79451069"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-13.channel_param_right\"}","index":"13","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/suixinsuiyuan33/article/details/79451069"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-13.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-13.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>如何理解空洞卷积（<em>dilated</em> convolution）</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/qq_32172681/article/details/103580207" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-14.channel_param_right\"}","index":"14","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/qq_32172681/article/details/103580207"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-14.channel_param_right\"}","index":"14","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/qq_32172681/article/details/103580207"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-14.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-14.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>casual Convolution因果卷积、空洞卷积<em>dilated</em> convolution、Hybrid <em>Dilated</em> Convolution (HDC)</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/qq_32678471/article/details/86223843" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-15.channel_param_right\"}","index":"15","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/qq_32678471/article/details/86223843"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-15.channel_param_right\"}","index":"15","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/qq_32678471/article/details/86223843"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-15.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-15.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>论文</em><em>阅读</em> ESPNet: Efficient Spatial Pyramid of <em>Dilated</em> <em>Convolutions</em> for Semantic Segmentation</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/zhangjunhit/article/details/70157920" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-16.channel_param_right\"}","index":"16","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/zhangjunhit/article/details/70157920"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-16.channel_param_right\"}","index":"16","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/zhangjunhit/article/details/70157920"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-16.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-16.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>膨胀卷积--Multi-scale context aggregation by <em>dilated</em> <em>convolutions</em></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/XB_please/article/details/106781545" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-17.channel_param_right\"}","index":"17","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/XB_please/article/details/106781545"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-17.channel_param_right\"}","index":"17","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/XB_please/article/details/106781545"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-17.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-17.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>论文</em>《Fast and Accurate Entity Recognition with Iterated <em>Dilated</em> <em>Convolutions</em>》</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/pku_Coder/article/details/82776335" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-18.channel_param_right\"}","index":"18","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/pku_Coder/article/details/82776335"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-18.channel_param_right\"}","index":"18","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/pku_Coder/article/details/82776335"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-18.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-18.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>Dilated</em> <em>Convolutions</em></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/FrankieHello/article/details/80486167" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-19.channel_param_right\"}","index":"19","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/FrankieHello/article/details/80486167"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-19.channel_param_right\"}","index":"19","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/FrankieHello/article/details/80486167"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-19.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-19.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>机器学习里面的Ground Truth是什么意思</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/juanjuan1314/article/details/82252451" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-20.channel_param_right\"}","index":"20","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/juanjuan1314/article/details/82252451"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-20.channel_param_right\"}","index":"20","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/juanjuan1314/article/details/82252451"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-20.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-20.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>膨胀卷积&mdash;&mdash;《MULTI-SCALE CONTEXT AGGREGATION BY <em>DILATED</em> <em>CONVOLUTIONS</em>》</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/comeontoto/article/details/79983557" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-21.channel_param_right\"}","index":"21","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/comeontoto/article/details/79983557"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-21.channel_param_right\"}","index":"21","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/comeontoto/article/details/79983557"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-21.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-21.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>Dilated</em> Convolution(带洞卷积)</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/Fate_fjh/article/details/53932602" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-22.channel_param_right\"}","index":"22","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/Fate_fjh/article/details/53932602"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-22.channel_param_right\"}","index":"22","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/Fate_fjh/article/details/53932602"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-22.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-22.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>卷积神经网络CNN（5）&mdash;&mdash; <em>Dilated</em> Convolution</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/guvcolie/article/details/77884530" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-23.channel_param_right\"}","index":"23","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/guvcolie/article/details/77884530"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-23.channel_param_right\"}","index":"23","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/guvcolie/article/details/77884530"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-23.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-23.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>Multi-Scale Context Aggregation by <em>Dilated</em> Convolution 对空洞卷积（扩张卷积）、感受野的理解</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/qq_35290785/article/details/100549191" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-24.channel_param_right\"}","index":"24","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/qq_35290785/article/details/100549191"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-24.channel_param_right\"}","index":"24","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/qq_35290785/article/details/100549191"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-24.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-24.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5><em>dilated</em> <em>convolutions</em></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/mooneve/article/details/83380623" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-25.channel_param_right\"}","index":"25","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/mooneve/article/details/83380623"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-25.channel_param_right\"}","index":"25","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/mooneve/article/details/83380623"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-25.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-25.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>【语义分割】Smoothed <em>Dilated</em> <em>Convolutions</em> for Improved Dense Prediction<em>阅读</em><em>笔记</em></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/zk_ken/article/details/80452554" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-26.channel_param_right\"}","index":"26","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/zk_ken/article/details/80452554"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-26.channel_param_right\"}","index":"26","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/zk_ken/article/details/80452554"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-26.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-26.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>图像分割--<em>Dilated</em> <em>Convolutions</em>（扩张卷积）</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/qq_36338754/article/details/96969208" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-27.channel_param_right\"}","index":"27","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/qq_36338754/article/details/96969208"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-searchFromBaidu-27.channel_param_right\"}","index":"27","strategy":"searchFromBaidu","dest":"https://blog.csdn.net/qq_36338754/article/details/96969208"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-27.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-searchFromBaidu-27.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>【扩张卷积or空洞卷积】如何理解<em>Dilated</em> <em>Convolutions</em>(空洞卷积)</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/u013249853/article/details/80493530" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-28.channel_param_right\"}","index":"28","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/u013249853/article/details/80493530"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-28.channel_param_right\"}","index":"28","strategy":"BlogCommendFromMachineLearnPai2","dest":"https://blog.csdn.net/u013249853/article/details/80493530"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-28.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromMachineLearnPai2-28.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>计算机视觉<em>论文</em><em>笔记</em>六：Multi-Scale Context Aggregation by <em>Dilated</em> <em>Convolutions</em></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/guojingjuan/article/details/70569940" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-29.channel_param_right\"}","index":"29","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/guojingjuan/article/details/70569940"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-29.channel_param_right\"}","index":"29","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/guojingjuan/article/details/70569940"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-29.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-29.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>dilation convolution</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/zhangjunhit/article/details/77878373" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-30.channel_param_right\"}","index":"30","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/zhangjunhit/article/details/77878373"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-30.channel_param_right\"}","index":"30","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/zhangjunhit/article/details/77878373"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-30.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-30.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>卫星图像分割--Effective Use of <em>Dilated</em> <em>Convolutions</em> for Segmenting Small Object Instances</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/u010213183/article/details/72647125" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-31.channel_param_right\"}","index":"31","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/u010213183/article/details/72647125"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-31.channel_param_right\"}","index":"31","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/u010213183/article/details/72647125"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-31.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-31.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>Multi-Scale Context Aggregation by <em>Dilated</em> Convolution读书<em>笔记</em></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/u014636245/article/details/85700023" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-32.channel_param_right\"}","index":"32","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/u014636245/article/details/85700023"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-32.channel_param_right\"}","index":"32","strategy":"BlogCommendFromBaidu","dest":"https://blog.csdn.net/u014636245/article/details/85700023"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-32.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendFromBaidu-32.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>【今日CS 视觉<em>论文</em>速览】3 Jan 2019</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://blog.csdn.net/qq_38490457/article/details/107640904" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendHotData-33.channel_param_right\"}","index":"33","strategy":"BlogCommendHotData","dest":"https://blog.csdn.net/qq_38490457/article/details/107640904"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-blog-BlogCommendHotData-33.channel_param_right\"}","index":"33","strategy":"BlogCommendHotData","dest":"https://blog.csdn.net/qq_38490457/article/details/107640904"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-blog-BlogCommendHotData-33.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-blog-BlogCommendHotData-33.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>学习MySQL这一篇就够了</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://download.csdn.net/download/lalalalaking/4916747" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-download-BlogCommendHotData-34.channel_param_right\"}","index":"34","strategy":"BlogCommendHotData","dest":"https://download.csdn.net/download/lalalalaking/4916747"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-download-BlogCommendHotData-34.channel_param_right\"}","index":"34","strategy":"BlogCommendHotData","dest":"https://download.csdn.net/download/lalalalaking/4916747"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-download-BlogCommendHotData-34.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-download-BlogCommendHotData-34.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>华为机考题库(全）</h5>
+                                    </div>
+                                    <span class="download_mark_button ">立即下载 </span>
+                                </div>
+                            </a>
+                        </li> 
+                        <li class="right-item">
+                            <a href="https://edu.csdn.net/combo/detail/1739" target="_blank"  data-report-view='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-combocourse-BlogCommendHotData-35.channel_param_right\"}","index":"35","strategy":"BlogCommendHotData","dest":"https://edu.csdn.net/combo/detail/1739"}'  data-report-click='{"ab":"new","mod":"popu_858","extra":"{\"utm_medium\":\"distribute.pc_relevant_right.none-task-combocourse-BlogCommendHotData-35.channel_param_right\"}","index":"35","strategy":"BlogCommendHotData","dest":"https://edu.csdn.net/combo/detail/1739"}'  data-report-query='utm_medium=distribute.pc_relevant_right.none-task-combocourse-BlogCommendHotData-35.channel_param_right&depth_1-utm_source=distribute.pc_relevant_right.none-task-combocourse-BlogCommendHotData-35.channel_param_right'>
+                                <div class="context-box ">
+                                    <div class="content clearfix ">
+                                        <h5>程序员的MySQL学习宝典</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> 
+                    </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+</div>
+<div class="mask-dark"></div>
+<script>
+    var articleId = 99343186;
+    var commentscount = 0;
+    var curentUrl = "http://blog.csdn.net/qq_36792959/article/details/99343186";
+    var myUrl = "https://my.csdn.net/";
+    highlight = [];
+    var share_card_url = "https://blog.csdn.net/qq_36792959/article/shareArticleCardPage?article_id=99343186"
+	var articleType = 1;
+    var baiduKey = "Matlab图像处理--低通滤波器的Matlab实现及透视图";
+    var needInsertBaidu = true;
+    var recommendRegularDomainArr = ["blog.csdn.net/.+/article/details/","download.csdn.net/download/","edu.csdn.net/course/detail/","ask.csdn.net/questions/","bbs.csdn.net/topics/","www.csdn.net/gather_.+/"]
+    var codeStyle = "atom-one-dark";
+    var baiduSearchType = "title";
+    var canRead = true;
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<div class="skin-boxshadow"></div>
+</body>
+<script src="https://csdnimg.cn/release/blogv2/dist/components/js/pc_wap_highlight-db1e81323a.min.js" type="text/javascript"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/components/js/pc_wap_common-906586e915.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-dark.css">
+<script>
+ // 全局声明
+ if (window.csdn === undefined) {
+      window.csdn = {};
+    }
+    window.csdn.sideToolbar = {
+        options: {
+            report:{
+                isShow: true,
+            },
+            qr: {
+                isShow: false,
+            }
+        }
+    }
+    $(function(){
+        $(document).on('click',"a.option-box[data-type='report']",function() {
+            window.csdn.userLogin.loadAjax(function(res){
+                showReport(false,articleTitles);
+            })
+        });
+    })
+</script>
+    <script src="https://g.csdnimg.cn/baidu-search/1.0.3/baidu-search.js"  type="text/javascript"></script>
+<script type="text/javascript"  src="https://g.csdnimg.cn/??login-box/1.1.0/50/login-box.js,login-box/1.1.0/50/login-auto.js"></script>
+<script src="https://csdnimg.cn/release/download/old_static/js/qrcode.js"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/pc/js/common-827988a092.min.js" type="text/javascript"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/pc/js/detail-211cce0368.min.js" type="text/javascript"></script>
+<script src="https://csdnimg.cn/release/cart/pub/1.0.4/cart_jsonp.js?v=2" type="text/javascript"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/pc/js/column-03a85d2e29.min.js" type="text/javascript"></script>
+<script src="https://g.csdnimg.cn/side-toolbar/2.5/side-toolbar.js" type="text/javascript"></script>
+<script src="https://g.csdnimg.cn/copyright/1.0.3/copyright.js" type="text/javascript"></script>
+<script>
+    $(".MathJax").remove();
+    if ($('div.markdown_views pre.prettyprint code.hljs').length > 0) {
+        $('div.markdown_views')[0].className = 'markdown_views';
+    }
+</script>
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+</html>
