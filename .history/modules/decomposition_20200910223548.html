@@ -1,0 +1,581 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="scikit-learn: machine learning in Python">
+
+  
+  <title>2.5. Decomposing signals in components (matrix factorization problems) &mdash; scikit-learn 0.23.2 documentation</title>
+  
+  <link rel="canonical" href="http://scikit-learn.org/stable/modules/decomposition.html" />
+
+  
+  <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  <link rel="stylesheet" href="../_static/css/vendor/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+<script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+<script src="../_static/jquery.js"></script> 
+</head>
+<body>
+<nav id="navbar" class="sk-docs-navbar navbar navbar-expand-md navbar-light bg-light py-0">
+  <div class="container-fluid sk-docs-container px-0">
+      <a class="navbar-brand py-0" href="../index.html">
+        <img
+          class="sk-brand-img"
+          src="../_static/scikit-learn-logo-small.png"
+          alt="logo"/>
+      </a>
+    <button
+      id="sk-navbar-toggler"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="sk-navbar-collapse collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../install.html">Install</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../user_guide.html">User Guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="classes.html">API</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../auto_examples/index.html">Examples</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../getting_started.html">Getting Started</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../tutorial/index.html">Tutorial</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../whats_new/v0.23.html">What's new</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../glossary.html">Glossary</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../developers/index.html">Development</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../faq.html">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../related_projects.html">Related packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../roadmap.html">Roadmap</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../about.html">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://github.com/scikit-learn/scikit-learn">GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/versions.html">Other Versions</a>
+        </li>
+        <li class="nav-item dropdown nav-more-item-dropdown">
+          <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="sk-nav-dropdown-item dropdown-item" href="../getting_started.html">Getting Started</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../tutorial/index.html">Tutorial</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../whats_new/v0.23.html">What's new</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../glossary.html">Glossary</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../developers/index.html">Development</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../faq.html">FAQ</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../related_projects.html">Related packages</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../roadmap.html">Roadmap</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../about.html">About us</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://github.com/scikit-learn/scikit-learn">GitHub</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/versions.html">Other Versions</a>
+          </div>
+        </li>
+      </ul>
+      <div id="searchbox" role="search">
+          <div class="searchformwrapper">
+          <form class="search" action="../search.html" method="get">
+            <input class="sk-search-text-input" type="text" name="q" aria-labelledby="searchlabel" />
+            <input class="sk-search-text-btn" type="submit" value="Go" />
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="d-flex" id="sk-doc-wrapper">
+    <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
+    <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
+    <div id="sk-sidebar-wrapper" class="border-right">
+      <div class="sk-sidebar-toc-wrapper">
+        <div class="sk-sidebar-toc-logo">
+          <a href="../index.html">
+            <img
+              class="sk-brand-img"
+              src="../_static/scikit-learn-logo-small.png"
+              alt="logo"/>
+          </a>
+        </div>
+        <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
+            <a href="biclustering.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="2.4. Biclustering">Prev</a><a href="../unsupervised_learning.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="2. Unsupervised learning">Up</a>
+            <a href="covariance.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="2.6. Covariance estimation">Next</a>
+        </div>
+        <div class="alert alert-danger p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+          <strong>scikit-learn 0.23.2</strong><br/>
+          <a href="http://scikit-learn.org/dev/versions.html">Other versions</a>
+          </p>
+        </div>
+        <div class="alert alert-warning p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+            Please <a class="font-weight-bold" href="../about.html#citing-scikit-learn"><string>cite us</string></a> if you use the software.
+          </p>
+        </div>
+          <div class="sk-sidebar-toc">
+            <ul>
+<li><a class="reference internal" href="#">2.5. Decomposing signals in components (matrix factorization problems)</a><ul>
+<li><a class="reference internal" href="#principal-component-analysis-pca">2.5.1. Principal component analysis (PCA)</a><ul>
+<li><a class="reference internal" href="#exact-pca-and-probabilistic-interpretation">2.5.1.1. Exact PCA and probabilistic interpretation</a></li>
+<li><a class="reference internal" href="#incremental-pca">2.5.1.2. Incremental PCA</a></li>
+<li><a class="reference internal" href="#pca-using-randomized-svd">2.5.1.3. PCA using randomized SVD</a></li>
+<li><a class="reference internal" href="#kernel-pca">2.5.1.4. Kernel PCA</a></li>
+<li><a class="reference internal" href="#sparse-principal-components-analysis-sparsepca-and-minibatchsparsepca">2.5.1.5. Sparse principal components analysis (SparsePCA and MiniBatchSparsePCA)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#truncated-singular-value-decomposition-and-latent-semantic-analysis">2.5.2. Truncated singular value decomposition and latent semantic analysis</a></li>
+<li><a class="reference internal" href="#dictionary-learning">2.5.3. Dictionary Learning</a><ul>
+<li><a class="reference internal" href="#sparse-coding-with-a-precomputed-dictionary">2.5.3.1. Sparse coding with a precomputed dictionary</a></li>
+<li><a class="reference internal" href="#generic-dictionary-learning">2.5.3.2. Generic dictionary learning</a></li>
+<li><a class="reference internal" href="#mini-batch-dictionary-learning">2.5.3.3. Mini-batch dictionary learning</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#factor-analysis">2.5.4. Factor Analysis</a></li>
+<li><a class="reference internal" href="#independent-component-analysis-ica">2.5.5. Independent component analysis (ICA)</a></li>
+<li><a class="reference internal" href="#non-negative-matrix-factorization-nmf-or-nnmf">2.5.6. Non-negative matrix factorization (NMF or NNMF)</a><ul>
+<li><a class="reference internal" href="#nmf-with-the-frobenius-norm">2.5.6.1. NMF with the Frobenius norm</a></li>
+<li><a class="reference internal" href="#nmf-with-a-beta-divergence">2.5.6.2. NMF with a beta-divergence</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#latent-dirichlet-allocation-lda">2.5.7. Latent Dirichlet Allocation (LDA)</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+      </div>
+    </div>
+    <div id="sk-page-content-wrapper">
+      <div class="sk-page-content container-fluid body px-md-3" role="main">
+        
+  <div class="section" id="decomposing-signals-in-components-matrix-factorization-problems">
+<span id="decompositions"></span><h1>2.5. Decomposing signals in components (matrix factorization problems)<a class="headerlink" href="#decomposing-signals-in-components-matrix-factorization-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="principal-component-analysis-pca">
+<span id="pca"></span><h2>2.5.1. Principal component analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exact-pca-and-probabilistic-interpretation">
+<h3>2.5.1.1. Exact PCA and probabilistic interpretation<a class="headerlink" href="#exact-pca-and-probabilistic-interpretation" title="Permalink to this headline">¶</a></h3>
+<p>PCA is used to decompose a multivariate dataset in a set of successive orthogonal components that explain a maximum amount of the variance. In
+scikit-learn, <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> is implemented as a <em>transformer</em> object
+that learns <span class="math notranslate nohighlight">\(n\)</span> components in its <code class="docutils literal notranslate"><span class="pre">fit</span></code> method, and can be used on new
+data to project it on these components.</p>
+<p>PCA centers but does not scale the input data for each feature before
+applying the SVD. The optional parameter <code class="docutils literal notranslate"><span class="pre">whiten=True</span></code> makes it
+possible to project the data onto the singular space while scaling each
+component to unit variance. This is often useful if the models down-stream make
+strong assumptions on the isotropy of the signal: this is for example the case
+for Support Vector Machines with the RBF kernel and the K-Means clustering
+algorithm.</p>
+<p>Below is an example of the iris dataset, which is comprised of 4
+features, projected on the 2 dimensions that explain most variance:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../auto_examples/decomposition/plot_pca_vs_lda.html"><img alt="../_images/sphx_glr_plot_pca_vs_lda_0011.png" src="../_images/sphx_glr_plot_pca_vs_lda_0011.png" style="width: 480.0px; height: 360.0px;" /></a>
+</div>
+<p>The <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> object also provides a
+probabilistic interpretation of the PCA that can give a likelihood of
+data based on the amount of variance it explains. As such it implements a
+<a class="reference internal" href="../glossary.html#term-score"><span class="xref std std-term">score</span></a> method that can be used in cross-validation:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../auto_examples/decomposition/plot_pca_vs_fa_model_selection.html"><img alt="../_images/sphx_glr_plot_pca_vs_fa_model_selection_0011.png" src="../_images/sphx_glr_plot_pca_vs_fa_model_selection_0011.png" style="width: 480.0px; height: 360.0px;" /></a>
+</div>
+<div class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/decomposition/plot_pca_vs_lda.html#sphx-glr-auto-examples-decomposition-plot-pca-vs-lda-py"><span class="std std-ref">Comparison of LDA and PCA 2D projection of Iris dataset</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/decomposition/plot_pca_vs_fa_model_selection.html#sphx-glr-auto-examples-decomposition-plot-pca-vs-fa-model-selection-py"><span class="std std-ref">Model selection with Probabilistic PCA and Factor Analysis (FA)</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="incremental-pca">
+<span id="incrementalpca"></span><h3>2.5.1.2. Incremental PCA<a class="headerlink" href="#incremental-pca" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> object is very useful, but has certain limitations for
+large datasets. The biggest limitation is that <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> only supports
+batch processing, which means all of the data to be processed must fit in main
+memory. The <a class="reference internal" href="generated/sklearn.decomposition.IncrementalPCA.html#sklearn.decomposition.IncrementalPCA" title="sklearn.decomposition.IncrementalPCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalPCA</span></code></a> object uses a different form of
+processing and allows for partial computations which almost
+exactly match the results of <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> while processing the data in a
+minibatch fashion. <a class="reference internal" href="generated/sklearn.decomposition.IncrementalPCA.html#sklearn.decomposition.IncrementalPCA" title="sklearn.decomposition.IncrementalPCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalPCA</span></code></a> makes it possible to implement
+out-of-core Principal Component Analysis either by:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Using its <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> method on chunks of data fetched sequentially
+from the local hard drive or a network database.</p></li>
+<li><p>Calling its fit method on a sparse matrix or a memory mapped file using
+<code class="docutils literal notranslate"><span class="pre">numpy.memmap</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p><a class="reference internal" href="generated/sklearn.decomposition.IncrementalPCA.html#sklearn.decomposition.IncrementalPCA" title="sklearn.decomposition.IncrementalPCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalPCA</span></code></a> only stores estimates of component and noise variances,
+in order update <code class="docutils literal notranslate"><span class="pre">explained_variance_ratio_</span></code> incrementally. This is why
+memory usage depends on the number of samples per batch, rather than the
+number of samples to be processed in the dataset.</p>
+<p>As in <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a>, <a class="reference internal" href="generated/sklearn.decomposition.IncrementalPCA.html#sklearn.decomposition.IncrementalPCA" title="sklearn.decomposition.IncrementalPCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalPCA</span></code></a> centers but does not scale the
+input data for each feature before applying the SVD.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../auto_examples/decomposition/plot_incremental_pca.html"><img alt="../_images/sphx_glr_plot_incremental_pca_0011.png" src="../_images/sphx_glr_plot_incremental_pca_0011.png" style="width: 600.0px; height: 600.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../auto_examples/decomposition/plot_incremental_pca.html"><img alt="../_images/sphx_glr_plot_incremental_pca_0021.png" src="../_images/sphx_glr_plot_incremental_pca_0021.png" style="width: 600.0px; height: 600.0px;" /></a>
+</div>
+<div class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/decomposition/plot_incremental_pca.html#sphx-glr-auto-examples-decomposition-plot-incremental-pca-py"><span class="std std-ref">Incremental PCA</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="pca-using-randomized-svd">
+<span id="randomizedpca"></span><h3>2.5.1.3. PCA using randomized SVD<a class="headerlink" href="#pca-using-randomized-svd" title="Permalink to this headline">¶</a></h3>
+<p>It is often interesting to project data to a lower-dimensional space that preserves most of the variance, by dropping the singular vector of components associated with lower singular values.</p>
+<p>For instance, if we work with 64x64 pixel gray-level pictures
+for face recognition,
+the dimensionality of the data is 4096 and it is slow to train an
+RBF support vector machine on such wide data. Furthermore we know that
+the intrinsic dimensionality of the data is much lower than 4096 since all
+pictures of human faces look somewhat alike.
+The samples lie on a manifold of much lower
+dimension (say around 200 for instance). The PCA algorithm can be used
+to linearly transform the data while both reducing the dimensionality
+and preserve most of the explained variance at the same time.</p>
+<p>The class <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> used with the optional parameter
+<code class="docutils literal notranslate"><span class="pre">svd_solver='randomized'</span></code> is very useful in that case: since we are going
+to drop most of the singular vectors it is much more efficient to limit the
+computation to an approximated estimate of the singular vectors we will keep
+to actually perform the transform.</p>
+<p>For instance, the following shows 16 sample portraits (centered around
+0.0) from the Olivetti dataset. On the right hand side are the first 16
+singular vectors reshaped as portraits. Since we only require the top
+16 singular vectors of a dataset with size <span class="math notranslate nohighlight">\(n_{samples} = 400\)</span>
+and <span class="math notranslate nohighlight">\(n_{features} = 64 \times 64 = 4096\)</span>, the computation time is
+less than 1s:</p>
+<p class="centered">
+<strong><a class="reference external" href="../auto_examples/decomposition/plot_faces_decomposition.html"><img alt="orig_img" src="../_images/sphx_glr_plot_faces_decomposition_0011.png" style="width: 360.0px; height: 270.59999999999997px;" /></a> <a class="reference external" href="../auto_examples/decomposition/plot_faces_decomposition.html"><img alt="pca_img" src="../_images/sphx_glr_plot_faces_decomposition_0021.png" style="width: 360.0px; height: 270.59999999999997px;" /></a></strong></p><p>If we note <span class="math notranslate nohighlight">\(n_{\max} = \max(n_{\mathrm{samples}}, n_{\mathrm{features}})\)</span> and
+<span class="math notranslate nohighlight">\(n_{\min} = \min(n_{\mathrm{samples}}, n_{\mathrm{features}})\)</span>, the time complexity
+of the randomized <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> is <span class="math notranslate nohighlight">\(O(n_{\max}^2 \cdot n_{\mathrm{components}})\)</span>
+instead of <span class="math notranslate nohighlight">\(O(n_{\max}^2 \cdot n_{\min})\)</span> for the exact method
+implemented in <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a>.</p>
+<p>The memory footprint of randomized <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> is also proportional to
+<span class="math notranslate nohighlight">\(2 \cdot n_{\max} \cdot n_{\mathrm{components}}\)</span> instead of <span class="math notranslate nohighlight">\(n_{\max}
+\cdot n_{\min}\)</span> for the exact method.</p>
+<p>Note: the implementation of <code class="docutils literal notranslate"><span class="pre">inverse_transform</span></code> in <a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a> with
+<code class="docutils literal notranslate"><span class="pre">svd_solver='randomized'</span></code> is not the exact inverse transform of
+<code class="docutils literal notranslate"><span class="pre">transform</span></code> even when <code class="docutils literal notranslate"><span class="pre">whiten=False</span></code> (default).</p>
+<div class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/applications/plot_face_recognition.html#sphx-glr-auto-examples-applications-plot-face-recognition-py"><span class="std std-ref">Faces recognition example using eigenfaces and SVMs</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/decomposition/plot_faces_decomposition.html#sphx-glr-auto-examples-decomposition-plot-faces-decomposition-py"><span class="std std-ref">Faces dataset decompositions</span></a></p></li>
+</ul>
+</div>
+<div class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/0909.4061">“Finding structure with randomness: Stochastic algorithms for
+constructing approximate matrix decompositions”</a>
+Halko, et al., 2009</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="kernel-pca">
+<span id="id1"></span><h3>2.5.1.4. Kernel PCA<a class="headerlink" href="#kernel-pca" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="generated/sklearn.decomposition.KernelPCA.html#sklearn.decomposition.KernelPCA" title="sklearn.decomposition.KernelPCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">KernelPCA</span></code></a> is an extension of PCA which achieves non-linear
+dimensionality reduction through the use of kernels (see <a class="reference internal" href="metrics.html#metrics"><span class="std std-ref">Pairwise metrics, Affinities and Kernels</span></a>). It
+has many applications including denoising, compression and structured
+prediction (kernel dependency estimation). <a class="reference internal" href="generated/sklearn.decomposition.KernelPCA.html#sklearn.decomposition.KernelPCA" title="sklearn.decomposition.KernelPCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">KernelPCA</span></code></a> supports both
+<code class="docutils literal notranslate"><span class="pre">transform</span></code> and <code class="docutils literal notranslate"><span class="pre">inverse_transform</span></code>.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../auto_examples/decomposition/plot_kernel_pca.html"><img alt="../_images/sphx_glr_plot_kernel_pca_0011.png" src="../_images/sphx_glr_plot_kernel_pca_0011.png" style="width: 480.0px; height: 360.0px;" /></a>
+</div>
+<div class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/decomposition/plot_kernel_pca.html#sphx-glr-auto-examples-decomposition-plot-kernel-pca-py"><span class="std std-ref">Kernel PCA</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="sparse-principal-components-analysis-sparsepca-and-minibatchsparsepca">
+<span id="sparsepca"></span><h3>2.5.1.5. Sparse principal components analysis (SparsePCA and MiniBatchSparsePCA)<a class="headerlink" href="#sparse-principal-components-analysis-sparsepca-and-minibatchsparsepca" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="generated/sklearn.decomposition.SparsePCA.html#sklearn.decomposition.SparsePCA" title="sklearn.decomposition.SparsePCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">SparsePCA</span></code></a> is a variant of PCA, with the goal of extracting the
+set of sparse components that best reconstruct the data.</p>
+<p>Mini-batch sparse PCA (<a class="reference internal" href="generated/sklearn.decomposition.MiniBatchSparsePCA.html#sklearn.decomposition.MiniBatchSparsePCA" title="sklearn.decomposition.MiniBatchSparsePCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">MiniBatchSparsePCA</span></code></a>) is a variant of
+<a class="reference internal" href="generated/sklearn.decomposition.SparsePCA.html#sklearn.decomposition.SparsePCA" title="sklearn.decomposition.SparsePCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">SparsePCA</span></code></a> that is faster but less accurate. The increased speed is
+reached by iterating over small chunks of the set of features, for a given
+number of iterations.</p>
+<p>Principal component analysis (<a class="reference internal" href="generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA" title="sklearn.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a>) has the disadvantage that the
+components extracted by this method have exclusively dense expressions, i.e.
+they have non-zero coefficients when expressed as linear combinations of the
+original variables. This can make interpretation difficult. In many cases,
+the real underlying components can be more naturally imagined as sparse
+vectors; for example in face recognition, components might naturally map to
+parts of faces.</p>
+<p>Sparse principal components yields a more parsimonious, interpretable
+representation, clearly emphasizing which of the original features contribute
+to the differences between samples.</p>
+<p>The following example illustrates 16 components extracted using sparse PCA from
+the Olivetti faces dataset.  It can be seen how the regularization term induces
+many zeros. Furthermore, the natural structure of the data causes the non-zero
+coefficients to be vertically adjacent. The model does not enforce this
+mathematically: each component is a vector <span class="math notranslate nohighlight">\(h \in \mathbf{R}^{4096}\)</span>, and
+there is no notion of vertical adjacency except during the human-friendly
+visualization as 64x64 pixel images. The fact that the components shown below
+appear local is the effect of the inherent structure of the data, which makes
+such local patterns minimize reconstruction error. There exist sparsity-inducing
+norms that take into account adjacency and different kinds of structure; see
+<a class="reference internal" href="#jen09" id="id2"><span>[Jen09]</span></a> for a review of such methods.
+For more details on how to use Sparse PCA, see the Examples section, below.</p>
+<p class="centered">
+<strong><a class="reference external" href="../auto_examples/decomposition/plot_faces_decomposition.html"><img alt="pca_img" src="../_images/sphx_glr_plot_faces_decomposition_0021.png" style="width: 360.0px; height: 270.59999999999997px;" /></a> <a class="reference external" href="../auto_examples/decomposition/plot_faces_decomposition.html"><img alt="spca_img" src="../_images/sphx_glr_plot_faces_decomposition_0051.png" style="width: 360.0px; height: 270.59999999999997px;" /></a></strong></p><p>Note that there are many different formulations for the Sparse PCA
+problem. The one implemented here is based on <a class="reference internal" href="#mrl09" id="id3"><span>[Mrl09]</span></a> . The optimization
+problem solved is a PCA problem (dictionary learning) with an
+<span class="math notranslate nohighlight">\(\ell_1\)</span> penalty on the components:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(U^*, V^*) = \underset{U, V}{\operatorname{arg\,min\,}} &amp; \frac{1}{2}
+             ||X-UV||_2^2+\alpha||V||_1 \\
+             \text{subject to } &amp; ||U_k||_2 = 1 \text{ for all }
+             0 \leq k &lt; n_{components}\end{split}\]</div>
+<p>The sparsity-inducing <span class="math notranslate nohighlight">\(\ell_1\)</span> norm also prevents learning
+components from noise when few training samples are available. The degree
+of penalization (and thus sparsity) can be adjusted through the
+hyperparameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code>. Small values lead to a gently regularized
+factorization, while larger values shrink many coefficients to zero.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While in the spirit of an online algorithm, the class
+<a class="reference internal" href="generated/sklearn.decomposition.MiniBatchSparsePCA.html#sklearn.decomposition.MiniBatchSparsePCA" title="sklearn.decomposition.MiniBatchSparsePCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">MiniBatchSparsePCA</span></code></a> does not implement <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> because
+the algorithm is online along the features direction, not the samples
+direction.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/decomposition/plot_faces_decomposition.html#sphx-glr-auto-examples-decomposition-plot-faces-decomposition-py"><span class="std std-ref">Faces dataset decompositions</span></a></p></li>
+</ul>
+</div>
+<div class="topic">
+<p class="topic-title">References:</p>
+<dl class="citation">
+<dt class="label" id="mrl09"><span class="brackets"><a class="fn-backref" href="#id3">Mrl09</a></span></dt>
+<dd><p><a class="reference external" href="https://www.di.ens.fr/sierra/pdfs/icml09.pdf">“Online Dictionary Learning for Sparse Coding”</a>
+J. Mairal, F. Bach, J. Ponce, G. Sapiro, 2009</p>
+</dd>
+<dt class="label" id="jen09"><span class="brackets"><a class="fn-backref" href="#id2">Jen09</a></span></dt>
+<dd><p><a class="reference external" href="https://www.di.ens.fr/~fbach/sspca_AISTATS2010.pdf">“Structured Sparse Principal Component Analysis”</a>
+R. Jenatton, G. Obozinski, F. Bach, 2009</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+# References
+<div class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">“Latent Dirichlet Allocation”</a>
+D. Blei, A. Ng, M. Jordan, 2003</p></li>
+<li><p><a class="reference external" href="https://papers.nips.cc/paper/3902-online-learning-for-latent-dirichlet-allocation.pdf">“Online Learning for Latent Dirichlet Allocation”</a>
+M. Hoffman, D. Blei, F. Bach, 2010</p></li>
+<li><p><a class="reference external" href="http://www.columbia.edu/~jwp2128/Papers/HoffmanBleiWangPaisley2013.pdf">“Stochastic Variational Inference”</a>
+M. Hoffman, D. Blei, C. Wang, J. Paisley, 2013</p></li>
+</ul>
+</div>
+<p>See also <a class="reference internal" href="neighbors.html#nca-dim-reduction"><span class="std std-ref">Dimensionality reduction</span></a> for dimensionality reduction with
+Neighborhood Components Analysis.</p>
+</div>
+</div>
+
+
+      </div>
+    <div class="container">
+      <footer class="sk-content-footer">
+            &copy; 2007 - 2020, scikit-learn developers (BSD License).
+          <a href="../_sources/modules/decomposition.rst.txt" rel="nofollow">Show this page source</a>
+      </footer>
+    </div>
+  </div>
+</div>
+<script src="../_static/js/vendor/bootstrap.min.js"></script>
+
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-22606712-2', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script>
+$(document).ready(function() {
+    /* Add a [>>>] button on the top-right corner of code samples to hide
+     * the >>> and ... prompts and the output and thus make the code
+     * copyable. */
+    var div = $('.highlight-python .highlight,' +
+                '.highlight-python3 .highlight,' +
+                '.highlight-pycon .highlight,' +
+		'.highlight-default .highlight')
+    var pre = div.find('pre');
+
+    // get the styles from the current theme
+    pre.parent().parent().css('position', 'relative');
+    var hide_text = 'Hide prompts and outputs';
+    var show_text = 'Show prompts and outputs';
+
+    // create and add the button to all the code blocks that contain >>>
+    div.each(function(index) {
+        var jthis = $(this);
+        if (jthis.find('.gp').length > 0) {
+            var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+            jthis.prepend(button);
+        }
+        // tracebacks (.gt) contain bare text elements that need to be
+        // wrapped in a span to work with .nextUntil() (see later)
+        jthis.find('pre:has(.gt)').contents().filter(function() {
+            return ((this.nodeType == 3) && (this.data.trim().length > 0));
+        }).wrap('<span>');
+    });
+
+    // define the behavior of the button when it's clicked
+    $('.copybutton').click(function(e){
+        e.preventDefault();
+        var button = $(this);
+        if (button.data('hidden') === 'false') {
+            // hide the code output
+            button.parent().find('.go, .gp, .gt').hide();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
+            button.css('text-decoration', 'line-through');
+            button.attr('title', show_text);
+            button.data('hidden', 'true');
+        } else {
+            // show the code output
+            button.parent().find('.go, .gp, .gt').show();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
+            button.css('text-decoration', 'none');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+        }
+    });
+
+	/*** Add permalink buttons next to glossary terms ***/
+	$('dl.glossary > dt[id]').append(function() {
+		return ('<a class="headerlink" href="#' +
+			    this.getAttribute('id') +
+			    '" title="Permalink to this term">¶</a>');
+	});
+  /*** Hide navbar when scrolling down ***/
+  // Returns true when headerlink target matches hash in url
+  (function() {
+    hashTargetOnTop = function() {
+        var hash = window.location.hash;
+        if ( hash.length < 2 ) { return false; }
+
+        var target = document.getElementById( hash.slice(1) );
+        if ( target === null ) { return false; }
+
+        var top = target.getBoundingClientRect().top;
+        return (top < 2) && (top > -2);
+    };
+
+    // Hide navbar on load if hash target is on top
+    var navBar = document.getElementById("navbar");
+    var navBarToggler = document.getElementById("sk-navbar-toggler");
+    var navBarHeightHidden = "-" + navBar.getBoundingClientRect().height + "px";
+    var $window = $(window);
+
+    hideNavBar = function() {
+        navBar.style.top = navBarHeightHidden;
+    };
+
+    showNavBar = function() {
+        navBar.style.top = "0";
+    }
+
+    if (hashTargetOnTop()) {
+        hideNavBar()
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    hideOnScroll = function(lastScrollTop) {
+        if (($window.width() < 768) && (navBarToggler.getAttribute("aria-expanded") === 'true')) {
+            return;
+        }
+        if (lastScrollTop > 2 && (prevScrollpos <= lastScrollTop) || hashTargetOnTop()){
+            hideNavBar()
+        } else {
+            showNavBar()
+        }
+        prevScrollpos = lastScrollTop;
+    };
+
+    /*** high performance scroll event listener***/
+    var raf = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.oRequestAnimationFrame;
+    var lastScrollTop = $window.scrollTop();
+
+    if (raf) {
+        loop();
+    }
+
+    function loop() {
+        var scrollTop = $window.scrollTop();
+        if (lastScrollTop === scrollTop) {
+            raf(loop);
+            return;
+        } else {
+            lastScrollTop = scrollTop;
+            hideOnScroll(lastScrollTop);
+            raf(loop);
+        }
+    }
+  })();
+});
+
+</script>
+    
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+    <script src="https://scikit-learn.org/versionwarning.js"></script>
+</body>
+</html>
