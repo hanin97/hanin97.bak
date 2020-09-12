@@ -4,24 +4,24 @@
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="Description" content="Deep Learning: Sequence model">
+  <meta name="Description" content="scikit-learn: machine learning in Python">
 
   
-  <title>5.1. Recurrent Neural Network</title>
+  <title>3.1. Cross-validation: evaluating estimator performance — scikit-learn 0.23.2 documentation</title>
   
-  <link rel="canonical" href="http://hanin97.cn/src/Deeplearning_ai/5-Sequence-Models/sequence-model.html">
+  <link rel="canonical" href="http://scikit-learn.org/stable/modules/cross_validation.html">
 
   
-  <link rel="shortcut icon" href="fav.ico">
+  <link rel="shortcut icon" href="https://scikit-learn.org/stable/_static/favicon.ico">
   
 
-  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="../../../assets/css/gallery.css" type="text/css">
-  <link rel="stylesheet" href="../../../assets/css/gallery-binder.css" type="text/css">
-  <link rel="stylesheet" href="../../../assets/css/gallery-dataframe.css" type="text/css">
-  <link rel="stylesheet" href="../../../assets/css/theme.css" type="text/css">
-<script id="documentation_options" data-url_root="../" src="../../../assets/js/documentation_options.js"></script>
-<script src="../../../assets/js/jquery-sk.js"></script> 
+  <link rel="stylesheet" href="./sklearn_files/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="./sklearn_files/gallery.css" type="text/css">
+  <link rel="stylesheet" href="./sklearn_files/gallery-binder.css" type="text/css">
+  <link rel="stylesheet" href="./sklearn_files/gallery-dataframe.css" type="text/css">
+  <link rel="stylesheet" href="./sklearn_files/theme.css" type="text/css">
+<script id="documentation_options" data-url_root="../" src="./sklearn_files/documentation_options.js.下载"></script>
+<script src="./sklearn_files/jquery.js.下载"></script> 
 <style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
 .CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
 .CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
@@ -757,47 +757,80 @@ mjx-c.mjx-c29.TEX-S1::before {
 <body>
 <nav id="navbar" class="sk-docs-navbar navbar navbar-expand-md navbar-light bg-light py-0">
   <div class="container-fluid sk-docs-container px-0">
-    <a class="navbar-brand py-0" href="https://hanin97.cn/index.html">
-      <img class="sk-brand-img" src="../../../images/hanin_log.png" alt="logo">
-    </a>
-  <button id="sk-navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <a class="navbar-brand py-0" href="https://scikit-learn.org/stable/index.html">
+        <img class="sk-brand-img" src="./sklearn_files/scikit-learn-logo-small.png" alt="logo">
+      </a>
+    <button id="sk-navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="sk-navbar-collapse collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Paper/1/1-index.html">Paper</a>
+          <a class="sk-nav-link nav-link" href="https://scikit-learn.org/stable/install.html">Install</a>
         </li>
         <li class="nav-item">
-          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Python/1/1-index.html">Python</a>
+          <a class="sk-nav-link nav-link" href="https://scikit-learn.org/stable/user_guide.html">User Guide</a>
         </li>
         <li class="nav-item">
-          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Matlab/1/1-index.html">Matlab</a>
+          <a class="sk-nav-link nav-link" href="https://scikit-learn.org/stable/modules/classes.html">API</a>
         </li>
         <li class="nav-item">
-          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Code-Station/1/1-index.html">Code Station</a>
+          <a class="sk-nav-link nav-link" href="https://scikit-learn.org/stable/auto_examples/index.html">Examples</a>
         </li>
         <li class="nav-item">
-          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/DeepLearning/1/1-index.html">Deeplearning</a>
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/getting_started.html">Getting Started</a>
         </li>
         <li class="nav-item">
-          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://hanin97.cn/src/Moods/1/1-index.html">Moods</a>
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/tutorial/index.html">Tutorial</a>
         </li>
         <li class="nav-item">
-          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://hanin97.cn/src/Music/1/1-index.html">Music</a>
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/whats_new/v0.23.html">What's new</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/glossary.html">Glossary</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/developers/index.html">Development</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/faq.html">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/related_projects.html">Related packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/roadmap.html">Roadmap</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/stable/about.html">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://github.com/scikit-learn/scikit-learn">GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/versions.html">Other Versions</a>
         </li>
         <li class="nav-item dropdown nav-more-item-dropdown">
-          <a class="sk-nav-link nav-link dropdown-toggle" href="sequence-model-index.html#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <a class="sk-nav-link nav-link dropdown-toggle" href="https://scikit-learn.org/stable/modules/cross_validation.html#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="sk-nav-dropdown-item dropdown-item" href="https://hanin97.cn/src/Moods/1/1-index.html">Moods</a>
-              <a class="sk-nav-dropdown-item dropdown-item" href="https://hanin97.cn/src/Music/1/1-index.html">Music</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/getting_started.html">Getting Started</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/tutorial/index.html">Tutorial</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/whats_new/v0.23.html">What's new</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/glossary.html">Glossary</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/developers/index.html">Development</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/faq.html">FAQ</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/related_projects.html">Related packages</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/roadmap.html">Roadmap</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/stable/about.html">About us</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://github.com/scikit-learn/scikit-learn">GitHub</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/versions.html">Other Versions</a>
           </div>
         </li>
       </ul>
       <div id="searchbox" role="search">
           <div class="searchformwrapper">
-          <form class="search" action="https://baidu.com" method="get">
+          <form class="search" action="https://scikit-learn.org/stable/search.html" method="get">
             <input class="sk-search-text-input" type="text" name="q" aria-labelledby="searchlabel">
             <input class="sk-search-text-btn" type="submit" value="Go">
           </form>
@@ -807,30 +840,31 @@ mjx-c.mjx-c29.TEX-S1::before {
   </div>
 </nav>
 <div class="d-flex" id="sk-doc-wrapper">
-  <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
-  <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
-  <div id="sk-sidebar-wrapper" class="border-right">
-    <div class="sk-sidebar-toc-wrapper">
-      <div class="sk-sidebar-toc-logo">
-        <a href="https://scikit-learn.org/stable/index.html">
-          <img class="sk-brand-img" src="./sklearn-index_files/scikit-learn-logo-small.png" alt="logo">
-        </a>
-      </div>
-      <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
-          <a href="https://hanin97.cn/general.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="4.1. Convolutional Neural Networks">Prev</a><a href="https://hanin97.cn/general.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="User Guide">My heart</a>
-          <a href="https://hanin97.cn/general.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="6.1. Cross-validation: evaluating estimator performance">Next</a>
-      </div>
-      <div class="alert alert-danger p-1 mb-2" role="alert">
-        <p class="text-center mb-0">
-        <strong>历史版本：1（2020-09-12）</strong><br>
-        </p>
-      </div>
-      <div class="alert alert-warning p-1 mb-2" role="alert">
-        <p class="text-center mb-0">
-          By Jineng Han
-        </p>
-      </div>
-        <div class="sk-sidebar-toc">
+    <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
+    <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
+    <div id="sk-sidebar-wrapper" class="border-right">
+      <div class="sk-sidebar-toc-wrapper">
+        <div class="sk-sidebar-toc-logo">
+          <a href="https://scikit-learn.org/stable/index.html">
+            <img class="sk-brand-img" src="./sklearn_files/scikit-learn-logo-small.png" alt="logo">
+          </a>
+        </div>
+        <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
+            <a href="https://scikit-learn.org/stable/model_selection.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="3. Model selection and evaluation">Prev</a><a href="https://scikit-learn.org/stable/model_selection.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="3. Model selection and evaluation">Up</a>
+            <a href="https://scikit-learn.org/stable/modules/grid_search.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="3.2. Tuning the hyper-parameters of an estimator">Next</a>
+        </div>
+        <div class="alert alert-danger p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+          <strong>scikit-learn 0.23.2</strong><br>
+          <a href="http://scikit-learn.org/dev/versions.html">Other versions</a>
+          </p>
+        </div>
+        <div class="alert alert-warning p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+            Please <a class="font-weight-bold" href="https://scikit-learn.org/stable/about.html#citing-scikit-learn"><string>cite us</string></a> if you use the software.
+          </p>
+        </div>
+          <div class="sk-sidebar-toc">
             <ul>
 <li><a class="reference internal" href="https://scikit-learn.org/stable/modules/cross_validation.html#">3.1. Cross-validation: evaluating estimator performance</a><ul>
 <li><a class="reference internal" href="https://scikit-learn.org/stable/modules/cross_validation.html#computing-cross-validated-metrics">3.1.1. Computing cross-validated metrics</a><ul>
@@ -1607,7 +1641,7 @@ model. This is the topic of the next section: <a class="reference internal" href
     </div>
   </div>
 </div>
-<script src="./sklearn_files/bootstrap.min.js"></script>
+<script src="./sklearn_files/bootstrap.min.js.下载"></script>
 
 <script>
     window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -1615,7 +1649,7 @@ model. This is the topic of the next section: <a class="reference internal" href
     ga('set', 'anonymizeIp', true);
     ga('send', 'pageview');
 </script>
-<script async="" src="./sklearn_files/analytics.js"></script>
+<script async="" src="./sklearn_files/analytics.js.下载"></script>
 
 
 <script>
@@ -1750,8 +1784,8 @@ $(document).ready(function() {
 
 </script>
     
-<script id="MathJax-script" async="" src="./sklearn_files/tex-chtml.js"></script>
+<script id="MathJax-script" async="" src="./sklearn_files/tex-chtml.js.下载"></script>
     
-    <script src="./sklearn_files/versionwarning.js"></script>
+    <script src="./sklearn_files/versionwarning.js.下载"></script>
 
 </body></html>
