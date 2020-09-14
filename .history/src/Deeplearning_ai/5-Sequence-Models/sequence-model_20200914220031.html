@@ -921,22 +921,23 @@ jhan:</p>
 <div class="section" id="notation">
   <h2>5.1.2. Notation<a class="headerlink" href="https://hanin97.cn/src/Deeplearning_ai/5-Sequence-Models/sequence-model.html#notation" title="Permalink to this headline">¶</a></h2>
   <span style="text-indent: 2em;">
-    <p>数学符号约定：
-    <em><strong>x: </strong>"Harry Potter and Herminoe Granger invented a new spell."</em>
+    <p>数学符号约定：<br/>
+    <em><strong>X: </strong>"Harry Potter and Herminoe Granger invented a new spell."</em>
     </p>
     <span style="text-indent: 2em;">
     <ul>
-      <li><strong>x[t]: </strong>第 <em>t</em> 个输入数据;</li>
-      <li><strong>y[t]: </strong>第 <em>t</em> 个输出数据;</li>
-      <li><strong>T_x: </strong>输入序列的长度;</li>
-      <li><strong>T_y: </strong>输出序列的长度;</li>
-      <li><strong>x(i)[t]: </strong>第 <em>i</em> 个样本中的第  <em>t</em> 个输入数据;</li>
+      <li><p>Here is <span class="math notranslate nohighlight"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" role="presentation" tabindex="0" ctxtmenu_counter="0" style="font-size: 112.9%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D458 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml role="presentation" unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>−</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container></span> formula;</p></li>
+      <li><strong>语音识别：</strong>输入音频片段 <em>x</em>，输出文字记录 <em>y</em> ;</li>
+      <li><strong>音乐生成：</strong>输入空集或单一整数等 <em>x</em>，输出序列 <em>y</em> ;</li>
+      <li><strong>情感分类</strong>输入文字序列 <em>x</em>，输出评级 <em>y</em> ;</li>
+      <li><strong>...</strong></li>
     </ul>
     </span>
   </span>
   <span style="text-indent: 2em;">
   <p>
-    单词的表示：首先构建词典，然后使用onehot编码输入数列。词典大小通常为3,0000~5,0000。
+    有些问题中的输入数据 <em>x</em> 和输出数据 <em>y</em> 都是序列， <em>x</em> 和 <em>y</em> 可能一样长，也可能不一样长;
+    有些问题中只有 <em>x</em> 或只有 <em>y</em> 是序列。
   </p>
   </span>
 </div>

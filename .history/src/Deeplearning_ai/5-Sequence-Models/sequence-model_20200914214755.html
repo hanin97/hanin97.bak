@@ -844,7 +844,7 @@ mjx-c.mjx-c29.TEX-S1::before {
     <!--5.1.2 start-->
     <ul>
       <li>
-        <a class="reference internal" href="https://hanin97.cn/src/Deeplearning_ai/5-Sequence-Models/sequence-model.html#notation">5.1.2. Notation</a>
+        <a class="reference internal" href="https://hanin97.cn/src/Deeplearning_ai/5-Sequence-Models/sequence-model.html#cross-validation-iterators">5.1.2. Notation</a>
       </li>
     </ul>
     <!--5.1.3 start-->
@@ -917,29 +917,6 @@ jhan:</p>
   有些问题中只有 <em>x</em> 或只有 <em>y</em> 是序列。
 </p>
 </span>
-</div>
-<div class="section" id="notation">
-  <h2>5.1.2. Notation<a class="headerlink" href="https://hanin97.cn/src/Deeplearning_ai/5-Sequence-Models/sequence-model.html#notation" title="Permalink to this headline">¶</a></h2>
-  <span style="text-indent: 2em;">
-    <p>数学符号约定：
-    <em><strong>x: </strong>"Harry Potter and Herminoe Granger invented a new spell."</em>
-    </p>
-    <span style="text-indent: 2em;">
-    <ul>
-      <li><strong>x[t]: </strong>第 <em>t</em> 个输入数据;</li>
-      <li><strong>y[t]: </strong>第 <em>t</em> 个输出数据;</li>
-      <li><strong>T_x: </strong>输入序列的长度;</li>
-      <li><strong>T_y: </strong>输出序列的长度;</li>
-      <li><strong>x(i)[t]: </strong>第 <em>i</em> 个样本中的第  <em>t</em> 个输入数据;</li>
-    </ul>
-    </span>
-  </span>
-  <span style="text-indent: 2em;">
-  <p>
-    单词的表示：首先构建词典，然后使用onehot编码输入数列。词典大小通常为3,0000~5,0000。
-  </p>
-  </span>
-</div>
 <!--
 <div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
