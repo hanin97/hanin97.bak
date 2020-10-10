@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="C++: 开始学习C++">
+
+  
+  <title>2. 开始学习C++</title>
+  
+  <link rel="canonical" href="http://hanin97.cn/src/C++/2-startC++/startC++.html">
+
+  
+  <link rel="shortcut icon" href="../../../images/fav.ico">
+  
+
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/gallery.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/gallery-binder.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/gallery-dataframe.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/theme.css" type="text/css">
+<script id="documentation_options" data-url_root="../" src="../../../assets/js/documentation_options.js"></script>
+<script src="../../../assets/js/jquery-sk.js"></script> 
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-inferredMrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  padding: .001em 0;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  overflow: hidden;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.1em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mfrac {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-frac {
+  display: inline-block;
+  vertical-align: 0.17em;
+  padding: 0 .22em;
+}
+
+mjx-frac[type="d"] {
+  vertical-align: .04em;
+}
+
+mjx-frac[delims] {
+  padding: 0 .1em;
+}
+
+mjx-frac[atop] {
+  padding: 0 .12em;
+}
+
+mjx-frac[atop][delims] {
+  padding: 0;
+}
+
+mjx-dtable {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-dtable > * {
+  font-size: 2000%;
+}
+
+mjx-dbox {
+  display: block;
+  font-size: 5%;
+}
+
+mjx-num {
+  display: block;
+  text-align: center;
+}
+
+mjx-den {
+  display: block;
+  text-align: center;
+}
+
+mjx-mfrac[bevelled] > mjx-num {
+  display: inline-block;
+}
+
+mjx-mfrac[bevelled] > mjx-den {
+  display: inline-block;
+}
+
+mjx-den[align="right"], mjx-num[align="right"] {
+  text-align: right;
+}
+
+mjx-den[align="left"], mjx-num[align="left"] {
+  text-align: left;
+}
+
+mjx-nstrut {
+  display: inline-block;
+  height: .054em;
+  width: 0;
+  vertical-align: -.054em;
+}
+
+mjx-nstrut[type="d"] {
+  height: .217em;
+  vertical-align: -.217em;
+}
+
+mjx-dstrut {
+  display: inline-block;
+  height: .505em;
+  width: 0;
+}
+
+mjx-dstrut[type="d"] {
+  height: .726em;
+}
+
+mjx-line {
+  display: block;
+  box-sizing: border-box;
+  min-height: 1px;
+  height: .06em;
+  border-top: .06em solid;
+  margin: .06em -.1em;
+  overflow: hidden;
+}
+
+mjx-line[type="d"] {
+  margin: .18em -.1em;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c28::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c29::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: ")";
+}
+
+mjx-c.mjx-c2B::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "+";
+}
+
+mjx-c.mjx-c2F::before {
+  padding: 0.75em 0.5em 0.25em 0;
+  content: "/";
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c3C::before {
+  padding: 0.54em 0.778em 0.04em 0;
+  content: "<";
+}
+
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-c3E::before {
+  padding: 0.54em 0.778em 0.04em 0;
+  content: ">";
+}
+
+mjx-c.mjx-c2212::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "\2212";
+}
+
+mjx-c.mjx-c1D443.TEX-I::before {
+  padding: 0.683em 0.751em 0 0;
+  content: "P";
+}
+
+[noIC] mjx-c.mjx-c1D443.TEX-I:last-child::before {
+  padding-right: 0.642em;
+}
+
+mjx-c.mjx-c1D458.TEX-I::before {
+  padding: 0.694em 0.521em 0.011em 0;
+  content: "k";
+}
+
+mjx-c.mjx-c1D45B.TEX-I::before {
+  padding: 0.442em 0.6em 0.011em 0;
+  content: "n";
+}
+
+mjx-c.mjx-c1D45D.TEX-I::before {
+  padding: 0.442em 0.503em 0.194em 0;
+  content: "p";
+}
+
+mjx-c.mjx-c28.TEX-S1::before {
+  padding: 0.85em 0.458em 0.349em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c29.TEX-S1::before {
+  padding: 0.85em 0.458em 0.349em 0;
+  content: ")";
+}
+</style></head>
+<body>
+<nav id="navbar" class="sk-docs-navbar navbar navbar-expand-md navbar-light bg-light py-0">
+  <div class="container-fluid sk-docs-container px-0">
+    <a class="navbar-brand py-0" href="https://hanin97.cn/index.html">
+      <img class="sk-brand-img" src="../../../images/hanin_log.png" alt="logo">
+    </a>
+  <button id="sk-navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="sk-navbar-collapse collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Paper/1/1-index.html">Paper</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Python/1/1-index.html">Python</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Matlab/1/1-index.html">Matlab</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Code-Station/1/1-index.html">Code Station</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/DeepLearning/1/1-index.html">Deeplearning</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://hanin97.cn/src/Moods/1/1-index.html">Moods</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html">C++</a>
+        </li>
+        <li class="nav-item dropdown nav-more-item-dropdown">
+          <a class="sk-nav-link nav-link dropdown-toggle" href="sequence-model-index.html#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://hanin97.cn/src/Moods/1/1-index.html">Moods</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html">C++</a>
+          </div>
+        </li>
+      </ul>
+      <div id="searchbox" role="search">
+          <div class="searchformwrapper">
+          <form class="search" action="https://baidu.com" method="get">
+            <input class="sk-search-text-input" type="text" name="q" aria-labelledby="searchlabel">
+            <input class="sk-search-text-btn" type="submit" value="Go">
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="d-flex" id="sk-doc-wrapper">
+  <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
+  <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
+  <div id="sk-sidebar-wrapper" class="border-right">
+    <div class="sk-sidebar-toc-wrapper">
+      <div class="sk-sidebar-toc-logo">
+        <a href="https://hanin97.cn/index.html">
+          <img class="hanin-brand-img" src="../../../images/fav.ico" alt="logo">
+        </a>
+      </div>
+      <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
+          <a href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="1. 预备知识">Prev</a><a href="https://hanin97.cn/index.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="  Homepage">My heart</a>
+          <a href="https://hanin97.cn/src/C++/3-processdata/processdata.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="3. 处理数据">Next</a>
+      </div>
+      <div class="alert alert-danger p-1 mb-2" role="alert">
+        <p class="text-center mb-0">
+        <strong>历史版本：1（2020-10-10）</strong><br>
+        <strong>上次更新：（2020-10-10）</strong><br>
+        </p>
+      </div>
+      <div class="alert alert-warning p-1 mb-2" role="alert">
+        <p class="text-center mb-0">
+          By Jineng Han
+        </p>
+      </div>
+        <div class="sk-sidebar-toc">
+<!--1. start-->
+<ul>
+  <li>
+    <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#startC++">2. 开始学习C++</a>
+  <!--1.1 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-1">2.1. 进入C++</a>
+      </li>
+    </ul>
+    <!--1.2 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-2">2.2. C++语句</a>
+      </li>
+    </ul>
+    <!--1.3 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-3">2.3. 其他C++语句</a>
+      </li>
+    </ul>
+    <!--1.4 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-4">2.4. 函数</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+      </div>
+  </div>
+</div>
+    <div id="sk-page-content-wrapper">
+      <div class="sk-page-content container-fluid body px-md-3" role="main">
+        
+  <div class="section" id="startC++">
+<span id="startC++"></span><h1>2. 开始学习C++<a class="headerlink" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#startC++" title="Permalink to this headline">¶</a></h1>
+
+<!--<code class="docutils literal notranslate"><span class="pre">X_test,</span> <span class="pre">y_test</span></code>.
+some paragraph,
+<a class="reference internal" href="https://scikit-learn.org/stable/modules/grid_search.html#grid-search"><span class="std std-ref">some ref link</span></a>.</p>
+<a class="reference internal image-reference" href="../../../images/pic16.jpg"><img alt="some notes" class="align-center" src="../../../images/pic16.jpg" style="width: 400px; height: 240px;"></a>
+
+<p>Next paragraph
+<a class="reference internal" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="sklearn.model_selection.train_test_split"><code class="xref py py-func docutils literal notranslate"><span class="pre">some link with title</span></code></a>.
+jhan:</p>
+
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">((150, 4), (150,))</span>
+</pre></div>
+</div>
+
+<p>jhan <em>k</em> “folds”:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Here is <span class="math notranslate nohighlight"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" role="presentation" tabindex="0" ctxtmenu_counter="0" style="font-size: 112.9%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D458 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml role="presentation" unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>−</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container></span> formula;</p></li>
+<li><p>.</p></li>
+</ul>
+</div></blockquote>
+-->
+
+<div class="section" id="2-1">
+<h2>2.1. 进入C++<a class="headerlink" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">#include</span> <span class="nn">&ltiostream&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">int</span> <span class="nn">main()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">{</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">    using namespace std;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">    cout << "Come up and C++ me some time.";</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">    cout << endl;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">    cout << "You won't regret it!" << endl;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">    cout << return 0;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">}</span>
+<span class="go">Output:</span>
+<span class="go">Come up and C++ me some time.</span>
+<span class="go">You won't regret it!</span>
+</pre></div>
+</div>
+<ol>
+  <li><strong>函数头</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        函数头“<em>int main()</em>”描述了函数与调用它的函数之间的接口，“int”表示函数的返回类型，“()”中的叫做形参列表，
+        空括号意味着“main()”函数不接受任何参数，在C++中，空括号与在括号中使用“void”等效。
+      </p>
+    </span>
+
+  <li><strong>注释</strong></li>
+    <span style="text-indent: 0em;">
+      <p>C++中使用“//”进行单行注释，也能够识别C注释，C注释包括在符号“/*”和“*/”之间，可以跨越多行。</p>
+    </span>
+
+  <li><strong>C++预处理器</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        这里只讨论处理名称以“#”开头的编译指令。“#include &ltiostrean&gt”将iostream文件的内容添加到程序中，
+        实际上，iostream文件的内容将取代程序中的代码行“#include &ltiostrean&gt”，原始文件没有被修改，而是将源代码文件
+        和iostream组合成一个复合文件，编译的下一阶段将使用该文件。
+      </p>
+    </span>
+
+  <li><strong>头文件名</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        头文件也叫包含文件。C++对老式C的头文件保留了扩展名h，而C++头文件则没有扩展名。有些C头文件被转换为C++头文件，这些文件
+        被重命名，去掉了扩展名h，并在文件名称前面加上前缀c（表明来自C语言）。<strong>对于纯粹的C++头文件，去掉h不只是形式上
+        的变化，没有h的头文件也可以包含名称空间。
+        </strong>
+      </p>
+    </span>
+  
+  <li><strong>名称空间</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        为什么要使用名称空间呢？为了处理这样的问题：在同时使用两个封装好的产品时，它们都包含一个名为wanda()的函数，使编译器不知道使用哪个版本
+        <strong>对于纯粹的C++头文件，去掉h不只是形式上
+        的变化，没有h的头文件也可以包含名称空间。
+        </strong>
+      </p>
+      <p></p>
+    </span>
+
+  <li><strong>名称空间</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        为什么要使用名称空间呢？为了处理这样的问题：在同时使用两个封装好的产品时，它们都包含一个名为wanda()的函数，使编译器不知道使用哪个版本
+        <strong>对于纯粹的C++头文件，去掉h不只是形式上
+        的变化，没有h的头文件也可以包含名称空间。
+        </strong>
+      </p>
+    </span>
+</ol>
+  <!-- <span style="text-indent: 0em;">
+  <ul>
+    <li><strong>语音识别：</strong>输入音频片段 <em>x</em>，输出文字记录 <em>y</em> ;</li>
+    <li><strong>音乐生成：</strong>输入空集或单一整数等 <em>x</em>，输出序列 <em>y</em> ;</li>
+    <li><strong>情感分类</strong>输入文字序列 <em>x</em>，输出评级 <em>y</em> ;</li>
+    <li><strong>...</strong></li>
+  </ul>
+  </span> -->
+</div>
+
+<div class="section" id="1-2">
+  <h2>2.2. C++简史<a class="headerlink" href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html#1-2" title="Permalink to this headline">¶</a></h2>
+  <span style="text-indent: 2em;">
+    <p>C语言和C++的区别：</p>
+    <span style="text-indent: 0em;">
+    <ul>
+      <li>C语言是<strong>面向过程</strong>的编程语言，它强调编程的算法方面，具有使用结构化编程的特性;</li>
+      <li>C语言的设计原则是<strong>自顶向下</strong>，即将大型程序分解成小型、便于管理的任务;</li>
+      <li>C++是<strong>面向对象（OOP）</strong>的编程语言，它强调编程的数据方面，其理念是设计与问题的本质特性相对应的数据格式，并用类来描述这种新型数据格式，对象是根据这种规范构造的特定数据结构。
+        通常，类规定了使用哪些数据来表示对象（数据）以及可以对这些数据执行哪些操作（方法）;</li>
+      <li>从低级组织（如类）到高级组织（如程序）的处理过程叫做自下向上的编程。</li>
+    </ul>
+    </span>
+  </span>
+  <span style="text-indent: 2em;">
+  <p>
+    泛型编程：强调独立于特定数据类型，使用一个泛型函数处理不同数据类型的同一任务。
+  </p>
+  </span>
+</div>
+
+<div class="section" id="1-3">
+  <h2>1.3. 可移植性和标准<a class="headerlink" href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html#1-3" title="Permalink to this headline">¶</a></h2>
+  <span style="text-indent: 2em;">
+    <p>可移植性的两个障碍：</p>
+    <span style="text-indent: 0em;">
+    <ul>
+      <li>1. 硬件：硬件的特定程序是不可移植的（将依赖于硬件的部分放在函数模块中可以最大限度地降低可移植性问题，这样只需要重新编写这些模块即可）;</li>
+      <li>2. 语言上的差异：不同计算机语言（XP、Linux）的语言习惯，为了统一语言工作方式，C++98/C++2003、C++11等标准应运而生。</li>
+    </ul>
+    </span>
+  </span>
+</div>
+
+<div class="section" id="1-4">
+  <h2>1.4. 程序创建的技巧<a class="headerlink" href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html#1-4" title="Permalink to this headline">¶</a></h2>
+  <span style="text-indent: 2em;">
+    <p>具体的步骤大体如下：编写源代码--编译源代码，生成目标代码--链接目标代码与其他代码（包括一些标准的启动代码），生成可执行代码</p>
+    <p>常见的编译器及简单用法：</p>
+    <span style="text-indent: 0em;">
+    <ul>
+      <li>
+        <p>UNIX：cfront（已于1993停更），GNU g++。</p>
+        <p><strong>CC xx.C</strong>（会删除过程中的xx.o，默认生成a.out）；</p>
+        <p><strong>CC xx1.C xx2.C</strong>（会保留过程中的xx1.o、xx2.o，便于后续修改再编译，如CC xx1.C xx2.o）;</p>
+      </li>
+      <li>
+        <p>Linux：g++。</p>
+        <p>g++ xx.cxx（会删除过程中的xx.o，默认生成a.out）；</p>
+        <p>g++ xx1.cxx xx2.cxx（会保留过程中的xx1.o、xx2.o，便于后续修改再编译，如CC xx1.C xx2.o）;</p>
+      </li>
+      <li>
+        <p>Windows命令行：Cygwin，MinGW。</p>
+        <p>g++ xx.cpp（会删除过程中的xx.o，默认生成a.exe）；</p>
+      </li>
+      <li>
+        <p>Windows编译器：Microsoft Visual C++。</p>
+        <p>Compile, Build, Make, Build All, Link, Execute, Run, Debug。</p>
+      </li>
+    </ul>
+    </span>
+  </span>
+</div>
+
+<!--
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span>
+<span class="go">array([0.96..., 1.  ..., 0.96..., 0.96..., 1.        ])</span>
+</pre></div>
+</div>
+<p>The mean score and the 95% confidence interval of the score estimate are hence
+given by:</p>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy: </span><span class="si">%0.2f</span><span class="s2"> (+/- </span><span class="si">%0.2f</span><span class="s2">)"</span> <span class="o">%</span> <span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+<span class="go">Accuracy: 0.98 (+/- 0.03)</span>
+</pre></div>
+</div>
+
+<div class="topic">
+<p class="topic-title">Data transformation with held out data</p>
+<p>Just as it is important to test a predictor on data held-out from
+training, preprocessing (such as standardization, feature selection, etc.)
+and similar <a class="reference internal" href="https://scikit-learn.org/stable/data_transforms.html#data-transforms"><span class="std std-ref">data transformations</span></a> similarly should
+be learnt from a training set and applied to held-out data for prediction:</p>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_transformed</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="go">0.9333...</span>
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="sklearn.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> makes it easier to compose
+estimators, providing this behavior under cross-validation:</p>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)</span>
+<span class="go">array([0.977..., 0.933..., 0.955..., 0.933..., 0.977...])</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="https://scikit-learn.org/stable/modules/compose.html#combining-estimators"><span class="std std-ref">Pipelines and composite estimators</span></a>.</p>
+</div>
+<div class="section" id="the-cross-validate-function-and-multiple-metric-evaluation">
+<span id="multimetric-cross-validation"></span><h3>3.1.1.1. The cross_validate function and multiple metric evaluation<a class="headerlink" href="https://hanin97.cn/src/Deeplearning_ai/5-Sequence-Models/sequence-model.html#the-cross-validate-function-and-multiple-metric-evaluation" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_validate.html#sklearn.model_selection.cross_validate" title="sklearn.model_selection.cross_validate"><code class="xref py py-func docutils literal notranslate"><span class="pre">cross_validate</span></code></a> function differs from <a class="reference internal" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="sklearn.model_selection.cross_val_score"><code class="xref py py-func docutils literal notranslate"><span class="pre">cross_val_score</span></code></a> in
+two ways:</p>
+<ul class="simple">
+<li><p>It allows specifying multiple metrics for evaluation.</p></li>
+<li><p>It returns a dict containing fit-times, score-times
+(and optionally training scores as well as fitted estimators) in
+addition to the test score.</p></li>
+</ul>
+<p>For single metric evaluation, where the scoring parameter is a string,
+callable or None, the keys will be - <code class="docutils literal notranslate"><span class="pre">['test_score',</span> <span class="pre">'fit_time',</span> <span class="pre">'score_time']</span></code></p>
+<p>And for multiple metric evaluation, the return value is a dict with the
+following keys -
+<code class="docutils literal notranslate"><span class="pre">['test_&lt;scorer1_name&gt;',</span> <span class="pre">'test_&lt;scorer2_name&gt;',</span> <span class="pre">'test_&lt;scorer...&gt;',</span> <span class="pre">'fit_time',</span> <span class="pre">'score_time']</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">return_train_score</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default to save computation time.
+To evaluate the scores on the training set as well you need to be set to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>You may also retain the estimator fitted on each training set by setting
+<code class="docutils literal notranslate"><span class="pre">return_estimator=True</span></code>.</p>
+<p>The multiple metrics can be specified either as a list, tuple or set of
+predefined scorer names:</p>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">recall_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scoring</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'precision_macro'</span><span class="p">,</span> <span class="s1">'recall_macro'</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">['fit_time', 'score_time', 'test_precision_macro', 'test_recall_macro']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_recall_macro'</span><span class="p">]</span>
+<span class="go">array([0.96..., 1.  ..., 0.96..., 0.96..., 1.        ])</span>
+</pre></div>
+</div>
+<p>Or as a dict mapping scorer name to a predefined or custom scoring function:</p>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scoring</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'prec_macro'</span><span class="p">:</span> <span class="s1">'precision_macro'</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="s1">'rec_macro'</span><span class="p">:</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">recall_score</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">['fit_time', 'score_time', 'test_prec_macro', 'test_rec_macro',</span>
+<span class="go"> 'train_prec_macro', 'train_rec_macro']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_rec_macro'</span><span class="p">]</span>
+<span class="go">array([0.97..., 0.97..., 0.99..., 0.98..., 0.98...])</span>
+</pre></div>
+</div>
+<p>Here is an example of <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code> using a single metric:</p>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="n">scoring</span><span class="o">=</span><span class="s1">'precision_macro'</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">['estimator', 'fit_time', 'score_time', 'test_score']</span>
+</pre></div>
+</div>
+</div>
+-->
+</div>
+
+
+      </div>
+    <div class="container">
+      <footer class="sk-content-footer">
+        &copy; Jineng. All rights reserved
+      </footer>
+    </div>
+  </div>
+</div>
+<script src="../../../assets/js/bootstrap.min.js"></script>
+
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-22606712-2', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script async="" src="./sklearn_files/analytics.js"></script>
+
+
+<script>
+$(document).ready(function() {
+    /* Add a [>>>] button on the top-right corner of code samples to hide
+     * the >>> and ... prompts and the output and thus make the code
+     * copyable. */
+    var div = $('.highlight-python .highlight,' +
+                '.highlight-python3 .highlight,' +
+                '.highlight-pycon .highlight,' +
+		'.highlight-default .highlight')
+    var pre = div.find('pre');
+
+    // get the styles from the current theme
+    pre.parent().parent().css('position', 'relative');
+    var hide_text = 'Hide prompts and outputs';
+    var show_text = 'Show prompts and outputs';
+
+    // create and add the button to all the code blocks that contain >>>
+    div.each(function(index) {
+        var jthis = $(this);
+        if (jthis.find('.gp').length > 0) {
+            var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+            jthis.prepend(button);
+        }
+        // tracebacks (.gt) contain bare text elements that need to be
+        // wrapped in a span to work with .nextUntil() (see later)
+        jthis.find('pre:has(.gt)').contents().filter(function() {
+            return ((this.nodeType == 3) && (this.data.trim().length > 0));
+        }).wrap('<span>');
+    });
+
+    // define the behavior of the button when it's clicked
+    $('.copybutton').click(function(e){
+        e.preventDefault();
+        var button = $(this);
+        if (button.data('hidden') === 'false') {
+            // hide the code output
+            button.parent().find('.go, .gp, .gt').hide();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
+            button.css('text-decoration', 'line-through');
+            button.attr('title', show_text);
+            button.data('hidden', 'true');
+        } else {
+            // show the code output
+            button.parent().find('.go, .gp, .gt').show();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
+            button.css('text-decoration', 'none');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+        }
+    });
+
+	/*** Add permalink buttons next to glossary terms ***/
+	$('dl.glossary > dt[id]').append(function() {
+		return ('<a class="headerlink" href="#' +
+			    this.getAttribute('id') +
+			    '" title="Permalink to this term">¶</a>');
+	});
+  /*** Hide navbar when scrolling down ***/
+  // Returns true when headerlink target matches hash in url
+  (function() {
+    hashTargetOnTop = function() {
+        var hash = window.location.hash;
+        if ( hash.length < 2 ) { return false; }
+
+        var target = document.getElementById( hash.slice(1) );
+        if ( target === null ) { return false; }
+
+        var top = target.getBoundingClientRect().top;
+        return (top < 2) && (top > -2);
+    };
+
+    // Hide navbar on load if hash target is on top
+    var navBar = document.getElementById("navbar");
+    var navBarToggler = document.getElementById("sk-navbar-toggler");
+    var navBarHeightHidden = "-" + navBar.getBoundingClientRect().height + "px";
+    var $window = $(window);
+
+    hideNavBar = function() {
+        navBar.style.top = navBarHeightHidden;
+    };
+
+    showNavBar = function() {
+        navBar.style.top = "0";
+    }
+
+    if (hashTargetOnTop()) {
+        hideNavBar()
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    hideOnScroll = function(lastScrollTop) {
+        if (($window.width() < 768) && (navBarToggler.getAttribute("aria-expanded") === 'true')) {
+            return;
+        }
+        if (lastScrollTop > 2 && (prevScrollpos <= lastScrollTop) || hashTargetOnTop()){
+            hideNavBar()
+        } else {
+            showNavBar()
+        }
+        prevScrollpos = lastScrollTop;
+    };
+
+    /*** high performance scroll event listener***/
+    var raf = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.oRequestAnimationFrame;
+    var lastScrollTop = $window.scrollTop();
+
+    if (raf) {
+        loop();
+    }
+
+    function loop() {
+        var scrollTop = $window.scrollTop();
+        if (lastScrollTop === scrollTop) {
+            raf(loop);
+            return;
+        } else {
+            lastScrollTop = scrollTop;
+            hideOnScroll(lastScrollTop);
+            raf(loop);
+        }
+    }
+  })();
+});
+
+</script>
+    
+<script id="MathJax-script" async="" src="../../../assets/js/tex-chtml.js"></script>
+    
+    <script src="../../../assets/js/versionwarning.js"></script>
+
+</body></html>

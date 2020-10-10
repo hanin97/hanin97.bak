@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="C++: 开始学习C++">
+
+  
+  <title>2. 开始学习C++</title>
+  
+  <link rel="canonical" href="http://hanin97.cn/src/C++/2-startC++/startC++.html">
+
+  
+  <link rel="shortcut icon" href="../../../images/fav.ico">
+  
+
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/gallery.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/gallery-binder.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/gallery-dataframe.css" type="text/css">
+  <link rel="stylesheet" href="../../../assets/css/theme.css" type="text/css">
+<script id="documentation_options" data-url_root="../" src="../../../assets/js/documentation_options.js"></script>
+<script src="../../../assets/js/jquery-sk.js"></script> 
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-inferredMrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  padding: .001em 0;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  overflow: hidden;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.1em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mfrac {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-frac {
+  display: inline-block;
+  vertical-align: 0.17em;
+  padding: 0 .22em;
+}
+
+mjx-frac[type="d"] {
+  vertical-align: .04em;
+}
+
+mjx-frac[delims] {
+  padding: 0 .1em;
+}
+
+mjx-frac[atop] {
+  padding: 0 .12em;
+}
+
+mjx-frac[atop][delims] {
+  padding: 0;
+}
+
+mjx-dtable {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-dtable > * {
+  font-size: 2000%;
+}
+
+mjx-dbox {
+  display: block;
+  font-size: 5%;
+}
+
+mjx-num {
+  display: block;
+  text-align: center;
+}
+
+mjx-den {
+  display: block;
+  text-align: center;
+}
+
+mjx-mfrac[bevelled] > mjx-num {
+  display: inline-block;
+}
+
+mjx-mfrac[bevelled] > mjx-den {
+  display: inline-block;
+}
+
+mjx-den[align="right"], mjx-num[align="right"] {
+  text-align: right;
+}
+
+mjx-den[align="left"], mjx-num[align="left"] {
+  text-align: left;
+}
+
+mjx-nstrut {
+  display: inline-block;
+  height: .054em;
+  width: 0;
+  vertical-align: -.054em;
+}
+
+mjx-nstrut[type="d"] {
+  height: .217em;
+  vertical-align: -.217em;
+}
+
+mjx-dstrut {
+  display: inline-block;
+  height: .505em;
+  width: 0;
+}
+
+mjx-dstrut[type="d"] {
+  height: .726em;
+}
+
+mjx-line {
+  display: block;
+  box-sizing: border-box;
+  min-height: 1px;
+  height: .06em;
+  border-top: .06em solid;
+  margin: .06em -.1em;
+  overflow: hidden;
+}
+
+mjx-line[type="d"] {
+  margin: .18em -.1em;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c28::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c29::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: ")";
+}
+
+mjx-c.mjx-c2B::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "+";
+}
+
+mjx-c.mjx-c2F::before {
+  padding: 0.75em 0.5em 0.25em 0;
+  content: "/";
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c3C::before {
+  padding: 0.54em 0.778em 0.04em 0;
+  content: "<";
+}
+
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-c3E::before {
+  padding: 0.54em 0.778em 0.04em 0;
+  content: ">";
+}
+
+mjx-c.mjx-c2212::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "\2212";
+}
+
+mjx-c.mjx-c1D443.TEX-I::before {
+  padding: 0.683em 0.751em 0 0;
+  content: "P";
+}
+
+[noIC] mjx-c.mjx-c1D443.TEX-I:last-child::before {
+  padding-right: 0.642em;
+}
+
+mjx-c.mjx-c1D458.TEX-I::before {
+  padding: 0.694em 0.521em 0.011em 0;
+  content: "k";
+}
+
+mjx-c.mjx-c1D45B.TEX-I::before {
+  padding: 0.442em 0.6em 0.011em 0;
+  content: "n";
+}
+
+mjx-c.mjx-c1D45D.TEX-I::before {
+  padding: 0.442em 0.503em 0.194em 0;
+  content: "p";
+}
+
+mjx-c.mjx-c28.TEX-S1::before {
+  padding: 0.85em 0.458em 0.349em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c29.TEX-S1::before {
+  padding: 0.85em 0.458em 0.349em 0;
+  content: ")";
+}
+</style></head>
+<body>
+<nav id="navbar" class="sk-docs-navbar navbar navbar-expand-md navbar-light bg-light py-0">
+  <div class="container-fluid sk-docs-container px-0">
+    <a class="navbar-brand py-0" href="https://hanin97.cn/index.html">
+      <img class="sk-brand-img" src="../../../images/hanin_log.png" alt="logo">
+    </a>
+  <button id="sk-navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="sk-navbar-collapse collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Paper/1/1-index.html">Paper</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Python/1/1-index.html">Python</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Matlab/1/1-index.html">Matlab</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/Code-Station/1/1-index.html">Code Station</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="https://hanin97.cn/src/DeepLearning/1/1-index.html">Deeplearning</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://hanin97.cn/src/Moods/1/1-index.html">Moods</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html">C++</a>
+        </li>
+        <li class="nav-item dropdown nav-more-item-dropdown">
+          <a class="sk-nav-link nav-link dropdown-toggle" href="sequence-model-index.html#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://hanin97.cn/src/Moods/1/1-index.html">Moods</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html">C++</a>
+          </div>
+        </li>
+      </ul>
+      <div id="searchbox" role="search">
+          <div class="searchformwrapper">
+          <form class="search" action="https://baidu.com" method="get">
+            <input class="sk-search-text-input" type="text" name="q" aria-labelledby="searchlabel">
+            <input class="sk-search-text-btn" type="submit" value="Go">
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="d-flex" id="sk-doc-wrapper">
+  <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
+  <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
+  <div id="sk-sidebar-wrapper" class="border-right">
+    <div class="sk-sidebar-toc-wrapper">
+      <div class="sk-sidebar-toc-logo">
+        <a href="https://hanin97.cn/index.html">
+          <img class="hanin-brand-img" src="../../../images/fav.ico" alt="logo">
+        </a>
+      </div>
+      <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
+          <a href="http://hanin97.cn/src/C++/1-propaedeutics/propaedeutics.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="1. 预备知识">Prev</a><a href="https://hanin97.cn/index.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="  Homepage">My heart</a>
+          <a href="https://hanin97.cn/src/C++/3-processdata/processdata.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="3. 处理数据">Next</a>
+      </div>
+      <div class="alert alert-danger p-1 mb-2" role="alert">
+        <p class="text-center mb-0">
+        <strong>历史版本：1（2020-10-10）</strong><br>
+        <strong>上次更新：（2020-10-10）</strong><br>
+        </p>
+      </div>
+      <div class="alert alert-warning p-1 mb-2" role="alert">
+        <p class="text-center mb-0">
+          By Jineng Han
+        </p>
+      </div>
+        <div class="sk-sidebar-toc">
+<!--1. start-->
+<ul>
+  <li>
+    <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#startC++">2. 开始学习C++</a>
+  <!--1.1 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-1">2.1. 进入C++</a>
+      </li>
+    </ul>
+    <!--1.2 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-2">2.2. C++语句</a>
+      </li>
+    </ul>
+    <!--1.3 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-3">2.3. 其他C++语句</a>
+      </li>
+    </ul>
+    <!--1.4 start-->
+    <ul>
+      <li>
+        <a class="reference internal" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-4">2.4. 函数</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+      </div>
+  </div>
+</div>
+    <div id="sk-page-content-wrapper">
+      <div class="sk-page-content container-fluid body px-md-3" role="main">
+        
+  <div class="section" id="startC++">
+<span id="startC++"></span><h1>2. 开始学习C++<a class="headerlink" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#startC++" title="Permalink to this headline">¶</a></h1>
+
+<!--<code class="docutils literal notranslate"><span class="pre">X_test,</span> <span class="pre">y_test</span></code>.
+some paragraph,
+<a class="reference internal" href="https://scikit-learn.org/stable/modules/grid_search.html#grid-search"><span class="std std-ref">some ref link</span></a>.</p>
+<a class="reference internal image-reference" href="../../../images/pic16.jpg"><img alt="some notes" class="align-center" src="../../../images/pic16.jpg" style="width: 400px; height: 240px;"></a>
+
+<p>Next paragraph
+<a class="reference internal" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="sklearn.model_selection.train_test_split"><code class="xref py py-func docutils literal notranslate"><span class="pre">some link with title</span></code></a>.
+jhan:</p>
+
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre><span></span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">((150, 4), (150,))</span>
+</pre></div>
+</div>
+
+<p>jhan <em>k</em> “folds”:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Here is <span class="math notranslate nohighlight"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" role="presentation" tabindex="0" ctxtmenu_counter="0" style="font-size: 112.9%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D458 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml role="presentation" unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>−</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container></span> formula;</p></li>
+<li><p>.</p></li>
+</ul>
+</div></blockquote>
+-->
+
+<div class="section" id="2-1">
+<h2>2.1. 进入C++<a class="headerlink" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">#include</span> <span class="nn">&ltiostream&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">int</span> <span class="nn">main()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">{</span>
+        using namespace std;>
+        cout << "Come up and C++ me some time.";
+        cout << endl;
+        cout << "You won't regret it!" << endl;
+        cout << return 0;
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">}</span>
+<span class="go">Output:</span>
+<span class="go">Come up and C++ me some time.</span>
+<span class="go">You won't regret it!</span>
+</pre></div>
+</div>
+<ol>
+  <li><strong>函数头</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        函数头“<em>int main()</em>”描述了函数与调用它的函数之间的接口，“int”表示函数的返回类型，“()”中的叫做形参列表，
+        空括号意味着“main()”函数不接受任何参数，在C++中，空括号与在括号中使用“void”等效。
+      </p>
+    </span>
+
+  <li><strong>注释</strong></li>
+    <span style="text-indent: 0em;">
+      <p>C++中使用“//”进行单行注释，也能够识别C注释，C注释包括在符号“/*”和“*/”之间，可以跨越多行。</p>
+    </span>
+
+  <li><strong>C++预处理器</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        这里只讨论处理名称以“#”开头的编译指令。<em>“#include &ltiostrean&gt;”</em>将iostream文件的内容添加到程序中，
+        实际上，iostream文件的内容将取代程序中的代码行<em>“#include &ltiostrean&gt;”</em>，原始文件没有被修改，而是将源代码文件
+        和iostream组合成一个复合文件，编译的下一阶段将使用该文件。
+      </p>
+    </span>
+
+  <li><strong>头文件名</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        头文件也叫包含文件。C++对老式C的头文件保留了扩展名h，而C++头文件则没有扩展名。有些C头文件被转换为C++头文件，这些文件
+        被重命名，去掉了扩展名h，并在文件名称前面加上前缀c（表明来自C语言）。<strong>对于纯粹的C++头文件，去掉h不只是形式上
+        的变化，没有h的头文件也可以包含名称空间。
+        </strong>
+      </p>
+    </span>
+  
+  <li><strong>名称空间</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        为什么要使用名称空间呢？为了处理这样的问题：在同时使用两个封装好的产品时，它们都包含一个名为wanda()的函数，使编译器不知道使用哪个版本。
+        如果不使用using编译指令，可以这样进行编码：<br>
+        <em><strong>std::cout << "Come up and C++ me some time.";</strong></em><br>
+        <em><strong>std::cout << std::endl;</strong></em><br>
+        比起直接使用<em>using namespace std</em>使得std名称空间中的所有名称都可用，更推荐只使所需的名称可用（大型项目时），可以通过使用using声明来实现：<br>
+        <em><strong>using std::cout;   // make cout available</strong></em>
+      
+        <p><em>注意：仅当头文件没有扩展名h时才是这样。</em></p>
+      </p>
+    </span>
+
+  <li><strong>C++源代码的格式化</strong></li>
+    <span style="text-indent: 0em;">
+      <p>
+        标记：一行代码中不可分割的元素，如“int、(、)”；<br>
+        空白：空格、制表符、回车；<br>
+        C++源代码风格：<br>
+        <ul>
+          <li>每条语句占一行；</li>
+          <li>每个函数都有一个开始花括号和一个结束花括号，这两个花括号各占一行；</li>
+          <li>函数中的语句都相对于花括号进行缩进；</li>
+          <li>与函数名称相关的圆括号周围没有空白（为了帮助区分函数和一些也使用圆括号的C++内置结构，如循环）。</li>
+          <li>空行将声明语句与程序的其他部分分开（C常用的方法，C++中不那么常见）；</li>
+          <li>待补充...</li>
+        </ul>
+      </p>
+    </span>
+</ol>
+</div>
+
+<div class="section" id="2-2">
+  <h2>2.2. C++语句<a class="headerlink" href="http://hanin97.cn/src/C++/2-startC++/startC++.html#2-1" title="Permalink to this headline">¶</a></h2>
+  <div class="highlight-default notranslate" style="position: relative;"><div class="highlight"><span class="copybutton" title="Hide prompts and outputs">&gt;&gt;&gt;</span><pre>
+  <span class="gp">&gt;&gt;&gt; </span><span class="kn">#include</span> <span class="nn">&ltiostream&gt;</span>
+  <span class="gp">&gt;&gt;&gt; </span><span class="kn">int</span> <span class="nn">main()</span>
+  <span class="gp">&gt;&gt;&gt; </span><span class="kn">{</span>
+          using namespace std;
+
+          int carrots;
+
+          carrots = 25;
+          cout << "I have ";
+          cout << carrots;
+          cout << " carrots.";
+          cout << endl;
+          carrots = carrots - 1;
+          cout << "Crunch, crunch. Now I have " << carrots << " carrots." << endl;
+          return 0;
+  <span class="gp">&gt;&gt;&gt; </span><span class="kn">}</span>
+  <span class="go">Output:</span>
+  <span class="go">I have 25 carrots.</span>
+  <span class="go">Crunch, crunch. Now I have 24 carrots.</span>
+  </pre></div>
+  </div>
+  <ol>
+    <li><strong>声明语句和变量</strong></li>
+      <span style="text-indent: 0em;">
+        <p>
+          声明有<strong>定义声明</strong>和<strong>引用声明</strong>。程序中的声明语句叫做定义声明，它使编译器为变量分配内存空间，
+          而引用声明命令计算机使用在其他地方定义的变量。此处的“<em>int carrots;</em>”为定义，它提供了需要的内存以及该内存单元的名称。
+        </p>
+      </span>
+  
+    <li><strong>赋值语句</strong></li>
+      <span style="text-indent: 0em;">
+        <p>赋值语句将值赋给存储单元。<em>carrots = 25;</em>同C一样，可以连续使用赋值运算符，且各变量的内存空间是独立的。</p>
+        <p><em>注意：与python不同，C++的连续赋值的变量是独立的，因为事先进行了声明，已经开辟了内存空间，而python连续赋值的变量
+          指向同一个内存空间，修改其中一个变量，另一个变量的值也会变。</em></p>
+      </span>
+  </ol>
+</div>
+
+</div>
+
+
+      </div>
+    <div class="container">
+      <footer class="sk-content-footer">
+        &copy; Jineng. All rights reserved
+      </footer>
+    </div>
+  </div>
+</div>
+<script src="../../../assets/js/bootstrap.min.js"></script>
+
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-22606712-2', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script async="" src="./sklearn_files/analytics.js"></script>
+
+
+<script>
+$(document).ready(function() {
+    /* Add a [>>>] button on the top-right corner of code samples to hide
+     * the >>> and ... prompts and the output and thus make the code
+     * copyable. */
+    var div = $('.highlight-python .highlight,' +
+                '.highlight-python3 .highlight,' +
+                '.highlight-pycon .highlight,' +
+		'.highlight-default .highlight')
+    var pre = div.find('pre');
+
+    // get the styles from the current theme
+    pre.parent().parent().css('position', 'relative');
+    var hide_text = 'Hide prompts and outputs';
+    var show_text = 'Show prompts and outputs';
+
+    // create and add the button to all the code blocks that contain >>>
+    div.each(function(index) {
+        var jthis = $(this);
+        if (jthis.find('.gp').length > 0) {
+            var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+            jthis.prepend(button);
+        }
+        // tracebacks (.gt) contain bare text elements that need to be
+        // wrapped in a span to work with .nextUntil() (see later)
+        jthis.find('pre:has(.gt)').contents().filter(function() {
+            return ((this.nodeType == 3) && (this.data.trim().length > 0));
+        }).wrap('<span>');
+    });
+
+    // define the behavior of the button when it's clicked
+    $('.copybutton').click(function(e){
+        e.preventDefault();
+        var button = $(this);
+        if (button.data('hidden') === 'false') {
+            // hide the code output
+            button.parent().find('.go, .gp, .gt').hide();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
+            button.css('text-decoration', 'line-through');
+            button.attr('title', show_text);
+            button.data('hidden', 'true');
+        } else {
+            // show the code output
+            button.parent().find('.go, .gp, .gt').show();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
+            button.css('text-decoration', 'none');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+        }
+    });
+
+	/*** Add permalink buttons next to glossary terms ***/
+	$('dl.glossary > dt[id]').append(function() {
+		return ('<a class="headerlink" href="#' +
+			    this.getAttribute('id') +
+			    '" title="Permalink to this term">¶</a>');
+	});
+  /*** Hide navbar when scrolling down ***/
+  // Returns true when headerlink target matches hash in url
+  (function() {
+    hashTargetOnTop = function() {
+        var hash = window.location.hash;
+        if ( hash.length < 2 ) { return false; }
+
+        var target = document.getElementById( hash.slice(1) );
+        if ( target === null ) { return false; }
+
+        var top = target.getBoundingClientRect().top;
+        return (top < 2) && (top > -2);
+    };
+
+    // Hide navbar on load if hash target is on top
+    var navBar = document.getElementById("navbar");
+    var navBarToggler = document.getElementById("sk-navbar-toggler");
+    var navBarHeightHidden = "-" + navBar.getBoundingClientRect().height + "px";
+    var $window = $(window);
+
+    hideNavBar = function() {
+        navBar.style.top = navBarHeightHidden;
+    };
+
+    showNavBar = function() {
+        navBar.style.top = "0";
+    }
+
+    if (hashTargetOnTop()) {
+        hideNavBar()
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    hideOnScroll = function(lastScrollTop) {
+        if (($window.width() < 768) && (navBarToggler.getAttribute("aria-expanded") === 'true')) {
+            return;
+        }
+        if (lastScrollTop > 2 && (prevScrollpos <= lastScrollTop) || hashTargetOnTop()){
+            hideNavBar()
+        } else {
+            showNavBar()
+        }
+        prevScrollpos = lastScrollTop;
+    };
+
+    /*** high performance scroll event listener***/
+    var raf = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.oRequestAnimationFrame;
+    var lastScrollTop = $window.scrollTop();
+
+    if (raf) {
+        loop();
+    }
+
+    function loop() {
+        var scrollTop = $window.scrollTop();
+        if (lastScrollTop === scrollTop) {
+            raf(loop);
+            return;
+        } else {
+            lastScrollTop = scrollTop;
+            hideOnScroll(lastScrollTop);
+            raf(loop);
+        }
+    }
+  })();
+});
+
+</script>
+    
+<script id="MathJax-script" async="" src="../../../assets/js/tex-chtml.js"></script>
+    
+    <script src="../../../assets/js/versionwarning.js"></script>
+
+</body></html>
